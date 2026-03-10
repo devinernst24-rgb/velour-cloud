@@ -59,9 +59,38 @@ const specs = [
   ["Run Time", "Up to 5 hours (continuous) / 8 hours (intermittent)"],
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  name: "Velour Cloud Rain Diffuser — 7-Color LED Aroma Mist Light",
+  description:
+    "Cool mist humidifier + aromatherapy diffuser + 7-colour night light. Whisper-quiet, auto shut-off, USB-C. Free shipping over $35 CAD.",
+  brand: {
+    "@type": "Brand",
+    name: "Velour Cloud",
+  },
+  image: "https://velourcloud.com/images/product-hero.png",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "CAD",
+    price: "44.99",
+    availability: "https://schema.org/InStock",
+    url: "https://velourcloud.com/products/rain-cloud-diffuser",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: "127",
+  },
+};
+
 export default function ProductPage() {
   return (
     <div className="bg-cream min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="lg:sticky lg:top-24 space-y-4">
@@ -89,10 +118,24 @@ export default function ProductPage() {
             </p>
             <h1
               style={{ fontFamily: "var(--font-cormorant), serif" }}
-              className="text-4xl md:text-5xl font-semibold text-plum mb-4 leading-tight"
+              className="text-4xl md:text-5xl font-semibold text-plum mb-3 leading-tight"
             >
               Velour Cloud Rain Diffuser — 7-Color LED Aroma Mist Light
             </h1>
+
+            {/* Star rating + review count */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-yellow-400 text-sm tracking-tighter" aria-label="5 out of 5 stars">
+                ★★★★★
+              </span>
+              <a
+                href="/#reviews"
+                className="text-xs text-plum/50 hover:text-plum/80 transition-colors"
+              >
+                (127 reviews)
+              </a>
+            </div>
+
             <p className="text-sm text-plum/70 leading-relaxed mb-8">
               Turn your room into a rainfall dream. Our Rain Cloud Diffuser fills
               the air with scented mist and a soft glow that shifts through 7
