@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ReviewCard from "@/components/ReviewCard";
 import TrustBadges from "@/components/TrustBadges";
 import EmailCapture from "@/components/EmailCapture";
@@ -93,15 +94,16 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:flex items-center justify-center">
-          <div className="w-80 h-80 rounded-full bg-lilac/20 flex items-center justify-center relative">
-            <div className="w-56 h-56 rounded-full bg-lilac/30 flex items-center justify-center">
-              <div className="w-36 h-36 rounded-2xl bg-lilac/40 flex items-center justify-center text-center p-4">
-                <p className="text-xs text-slate-mist font-medium leading-snug">
-                  Product photo<br />coming soon
-                </p>
-              </div>
-            </div>
+        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block">
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/lifestyle-1.png"
+              alt="Velour Cloud Rain Diffuser lifestyle"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/10 to-transparent" />
           </div>
         </div>
       </section>

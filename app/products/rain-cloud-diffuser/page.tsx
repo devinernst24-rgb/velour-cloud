@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 
 export const metadata: Metadata = {
@@ -63,11 +64,22 @@ export default function ProductPage() {
     <div className="bg-cream min-h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="sticky top-24">
-            <div className="bg-lilac/30 rounded-2xl aspect-square flex items-center justify-center">
-              <p className="text-slate-mist text-sm font-medium">
-                Product photo coming soon
-              </p>
+          <div className="sticky top-24 space-y-4">
+            <div className="rounded-2xl overflow-hidden aspect-square relative">
+              <Image
+                src="/images/product-hero.png"
+                alt="Velour Cloud Rain Diffuser"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {["/images/product-white.png", "/images/product-grey.png", "/images/product-blue.png"].map((src, i) => (
+                <div key={i} className="rounded-xl overflow-hidden aspect-square relative">
+                  <Image src={src} alt={`Variant ${i + 1}`} fill className="object-cover" />
+                </div>
+              ))}
             </div>
           </div>
 
