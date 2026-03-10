@@ -64,7 +64,7 @@ export default function ProductPage() {
     <div className="bg-cream min-h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="sticky top-24 space-y-4">
+          <div className="lg:sticky lg:top-24 space-y-4">
             <div className="rounded-2xl overflow-hidden aspect-square relative">
               <Image
                 src="/images/product-hero.png"

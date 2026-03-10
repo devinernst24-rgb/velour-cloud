@@ -114,10 +114,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        console.warn("Checkout unavailable:", data.error);
+        alert("Checkout not configured yet — come back soon!");
       }
     } catch (err) {
       console.warn("Checkout error:", err);
+      alert("Checkout not configured yet — come back soon!");
     } finally {
       setIsLoading(false);
     }
