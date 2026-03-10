@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #EDE6DC;
+  --color-lilac: #C4B0C2;
+  --color-slate-mist: #8BA9B5;
+  --color-plum: #2D2A35;
+}
+
+body {
+  background-color: #EDE6DC;
+  color: #2D2A35;
+}
