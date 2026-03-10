@@ -3,7 +3,8 @@
 import { useCart } from "@/context/CartContext";
 
 export default function CartDrawer() {
-  const { cart, isOpen, isLoading, closeCart, checkout } = useCart();
+  const { items, subtotal, isOpen, isLoading, closeCart, removeItem, checkout } =
+    useCart();
 
   return (
     <>
@@ -49,7 +50,7 @@ export default function CartDrawer() {
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
-          {!cart || cart.lines.length === 0 ? (
+          {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center gap-4">
               <p className="text-plum/60 text-sm">Your cart is empty.</p>
               <button
@@ -61,9 +62,9 @@ export default function CartDrawer() {
             </div>
           ) : (
             <ul className="space-y-5">
-              {cart.lines.map((line) => (
+              {items.map((item) => (
                 <li
-                  key={line.id}
+                  key={item.id}
                   className="flex gap-4 items-start border-b border-lilac/20 pb-5"
                 >
                   <div className="w-16 h-16 rounded-xl bg-lilac/30 flex items-center justify-center shrink-0">
@@ -84,32 +85,34 @@ export default function CartDrawer() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-plum truncate">
-                      {line.merchandise.product.title}
+                      {item.name}
                     </p>
                     <p className="text-xs text-plum/60 mt-0.5">
-                      {line.merchandise.title}
-                    </p>
-                    <p className="text-xs text-slate-mist mt-1">
-                      Qty: {line.quantity}
+                      Qty: {item.quantity}
                     </p>
                   </div>
-                  <p className="text-sm font-medium text-plum shrink-0">
-                    ${(
-                      parseFloat(line.merchandise.priceV2.amount) * line.quantity
-                    ).toFixed(2)}{" "}
-                    {line.merchandise.priceV2.currencyCode}
-                  </p>
+                  <div className="flex flex-col items-end gap-1 shrink-0">
+                    <p className="text-sm font-medium text-plum">
+                      ${(item.price * item.quantity).toFixed(2)} CAD
+                    </p>
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="text-xs text-plum/40 hover:text-plum/70 transition-colors"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
           )}
         </div>
 
-        {cart && cart.lines.length > 0 && (
+        {items.length > 0 && (
           <div className="px-6 py-5 border-t border-lilac/30 space-y-4">
             <div className="flex justify-between text-sm font-medium text-plum">
               <span>Subtotal</span>
-              <span>${parseFloat(cart.totalAmount).toFixed(2)} CAD</span>
+              <span>${subtotal.toFixed(2)} CAD</span>
             </div>
             <p className="text-xs text-plum/50">
               Shipping calculated at checkout.

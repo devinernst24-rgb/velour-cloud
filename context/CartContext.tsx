@@ -8,115 +8,137 @@ import {
   useCallback,
   ReactNode,
 } from "react";
-import { createCart, addToCart, getCart, getCheckoutUrl } from "@/lib/shopify";
 
-interface CartLine {
+export interface CartItem {
   id: string;
+  variantId: string;
+  name: string;
+  price: number;
   quantity: number;
-  merchandise: {
-    id: string;
-    title: string;
-    priceV2: { amount: string; currencyCode: string };
-    product: { title: string };
-  };
-}
-
-interface Cart {
-  id: string;
-  checkoutUrl: string;
-  lines: CartLine[];
-  totalAmount: string;
 }
 
 interface CartContextType {
-  cart: Cart | null;
+  items: CartItem[];
   cartCount: number;
+  subtotal: number;
   isOpen: boolean;
   isLoading: boolean;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (variantId: string, quantity: number) => Promise<void>;
+  addItem: (variantId: string, quantity: number, name: string, price: number) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, qty: number) => void;
   checkout: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
 
-function parseCart(rawCart: {
-  id: string;
-  checkoutUrl: string;
-  lines: { edges: { node: CartLine }[] };
-  cost: { totalAmount: { amount: string } };
-}): Cart {
-  return {
-    id: rawCart.id,
-    checkoutUrl: rawCart.checkoutUrl,
-    lines: rawCart.lines.edges.map((e) => e.node),
-    totalAmount: rawCart.cost.totalAmount.amount,
-  };
+const STORAGE_KEY = "velour_cart";
+
+function loadItems(): CartItem[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as CartItem[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveItems(items: CartItem[]) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<Cart | null>(null);
+  const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const cartId = localStorage.getItem("shopify_cart_id");
-    if (cartId) {
-      getCart(cartId)
-        .then((raw) => {
-          if (raw) setCart(parseCart(raw));
-        })
-        .catch(() => {});
-    }
+    setItems(loadItems());
   }, []);
 
-  const getOrCreateCart = useCallback(async (): Promise<string> => {
-    if (cart?.id) return cart.id;
-    const stored = localStorage.getItem("shopify_cart_id");
-    if (stored) return stored;
-    const newCart = await createCart();
-    localStorage.setItem("shopify_cart_id", newCart.id);
-    return newCart.id;
-  }, [cart]);
-
   const addItem = useCallback(
-    async (variantId: string, quantity: number) => {
-      setIsLoading(true);
-      try {
-        const cartId = await getOrCreateCart();
-        const raw = await addToCart(cartId, variantId, quantity);
-        setCart(parseCart(raw));
-        localStorage.setItem("shopify_cart_id", cartId);
-        setIsOpen(true);
-      } catch (err) {
-        console.warn("Cart unavailable — Shopify token not yet configured.", err);
-        // Graceful no-op until Storefront token is added to env vars
-      } finally {
-        setIsLoading(false);
-      }
+    (variantId: string, quantity: number, name: string, price: number) => {
+      setItems((prev) => {
+        const existing = prev.find((i) => i.variantId === variantId);
+        let next: CartItem[];
+        if (existing) {
+          next = prev.map((i) =>
+            i.variantId === variantId
+              ? { ...i, quantity: i.quantity + quantity }
+              : i
+          );
+        } else {
+          next = [
+            ...prev,
+            { id: `${variantId}-${Date.now()}`, variantId, name, price, quantity },
+          ];
+        }
+        saveItems(next);
+        return next;
+      });
+      setIsOpen(true);
     },
-    [getOrCreateCart]
+    []
   );
 
-  const checkout = useCallback(async () => {
-    if (!cart?.id) return;
-    const url = await getCheckoutUrl(cart.id);
-    window.location.href = url;
-  }, [cart]);
+  const removeItem = useCallback((id: string) => {
+    setItems((prev) => {
+      const next = prev.filter((i) => i.id !== id);
+      saveItems(next);
+      return next;
+    });
+  }, []);
 
-  const cartCount = cart?.lines.reduce((sum, l) => sum + l.quantity, 0) ?? 0;
+  const updateQuantity = useCallback((id: string, qty: number) => {
+    setItems((prev) => {
+      const next =
+        qty <= 0
+          ? prev.filter((i) => i.id !== id)
+          : prev.map((i) => (i.id === id ? { ...i, quantity: qty } : i));
+      saveItems(next);
+      return next;
+    });
+  }, []);
+
+  const checkout = useCallback(async () => {
+    if (items.length === 0) return;
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.warn("Checkout unavailable:", data.error);
+      }
+    } catch (err) {
+      console.warn("Checkout error:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [items]);
+
+  const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   return (
     <CartContext.Provider
       value={{
-        cart,
+        items,
         cartCount,
+        subtotal,
         isOpen,
         isLoading,
         openCart: () => setIsOpen(true),
         closeCart: () => setIsOpen(false),
         addItem,
+        removeItem,
+        updateQuantity,
         checkout,
       }}
     >

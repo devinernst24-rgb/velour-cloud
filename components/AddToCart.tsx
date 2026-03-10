@@ -4,10 +4,16 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 const variants = [
-  { name: "Ivory White", price: 44.99, variantId: "48065754792103" },
-  { name: "Soft Grey",   price: 44.99, variantId: "48065759314087" },
-  { name: "Misty Blue",  price: 44.99, variantId: "48065759346855" },
+  { name: "Rain Cloud Diffuser — Ivory White", price: 44.99, variantId: "48065754792103" },
+  { name: "Rain Cloud Diffuser — Soft Grey",   price: 44.99, variantId: "48065759314087" },
+  { name: "Rain Cloud Diffuser — Misty Blue",  price: 44.99, variantId: "48065759346855" },
 ];
+
+const variantLabels: Record<string, string> = {
+  "48065754792103": "Ivory White",
+  "48065759314087": "Soft Grey",
+  "48065759346855": "Misty Blue",
+};
 
 const upsells = [
   { label: "3-Oil Bundle", price: 14.99, id: "upsell-3oil" },
@@ -20,7 +26,16 @@ export default function AddToCart() {
   const [selectedUpsell, setSelectedUpsell] = useState<string | null>(null);
 
   async function handleAddToCart() {
-    await addItem(selectedVariant.variantId, 1);
+    addItem(
+      selectedVariant.variantId,
+      1,
+      selectedVariant.name,
+      selectedVariant.price
+    );
+    const upsell = upsells.find((u) => u.id === selectedUpsell);
+    if (upsell) {
+      addItem(upsell.id, 1, upsell.label, upsell.price);
+    }
   }
 
   const total =
@@ -46,7 +61,7 @@ export default function AddToCart() {
                   : "bg-transparent text-plum border-plum/30 hover:border-plum/60"
               }`}
             >
-              {v.name} — ${v.price.toFixed(2)} CAD
+              {variantLabels[v.variantId]} — ${v.price.toFixed(2)} CAD
             </button>
           ))}
         </div>
