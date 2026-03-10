@@ -1,9 +1,14 @@
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
-const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || "vj86b0-dq.myshopify.com";
+const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || "";
 
-const endpoint = `https://${domain}/api/2024-01/graphql.json`;
+const SHOPIFY_CONFIGURED = Boolean(storefrontAccessToken);
+
+const endpoint = `https://${domain}/api/2024-10/graphql.json`;
 
 async function shopifyFetch(query: string, variables?: Record<string, unknown>) {
+  if (!SHOPIFY_CONFIGURED) {
+    throw new Error("Shopify Storefront API token not configured");
+  }
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -35,11 +40,16 @@ export async function addToCart(
   variantId: string,
   quantity: number
 ) {
+  const fullVariantId = variantId.startsWith("gid://")
+    ? variantId
+    : `gid://shopify/ProductVariant/${variantId}`;
+
   const query = `
     mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
       cartLinesAdd(cartId: $cartId, lines: $lines) {
         cart {
           id
+          checkoutUrl
           lines(first: 100) {
             edges {
               node {
@@ -49,31 +59,21 @@ export async function addToCart(
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
-                      amount
-                      currencyCode
-                    }
-                    product {
-                      title
-                    }
+                    priceV2 { amount currencyCode }
+                    product { title }
                   }
                 }
               }
             }
           }
-          cost {
-            totalAmount {
-              amount
-              currencyCode
-            }
-          }
+          cost { totalAmount { amount currencyCode } }
         }
       }
     }
   `;
   const data = await shopifyFetch(query, {
     cartId,
-    lines: [{ merchandiseId: variantId, quantity }],
+    lines: [{ merchandiseId: fullVariantId, quantity }],
   });
   return data.data.cartLinesAdd.cart;
 }
@@ -93,24 +93,14 @@ export async function getCart(cartId: string) {
                 ... on ProductVariant {
                   id
                   title
-                  priceV2 {
-                    amount
-                    currencyCode
-                  }
-                  product {
-                    title
-                  }
+                  priceV2 { amount currencyCode }
+                  product { title }
                 }
               }
             }
           }
         }
-        cost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-        }
+        cost { totalAmount { amount currencyCode } }
       }
     }
   `;
@@ -122,3 +112,5 @@ export async function getCheckoutUrl(cartId: string): Promise<string> {
   const cart = await getCart(cartId);
   return cart.checkoutUrl;
 }
+
+export { SHOPIFY_CONFIGURED };

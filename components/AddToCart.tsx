@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 const variants = [
-  { name: "Ivory White", price: 44.99, variantId: "ivory-white" },
-  { name: "Soft Grey", price: 44.99, variantId: "soft-grey" },
-  { name: "Misty Blue", price: 44.99, variantId: "misty-blue" },
+  { name: "Ivory White", price: 44.99, variantId: "48065754792103" },
+  { name: "Soft Grey",   price: 44.99, variantId: "48065759314087" },
+  { name: "Misty Blue",  price: 44.99, variantId: "48065759346855" },
 ];
 
 const upsells = [

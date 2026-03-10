@@ -89,6 +89,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setCart(parseCart(raw));
         localStorage.setItem("shopify_cart_id", cartId);
         setIsOpen(true);
+      } catch (err) {
+        console.warn("Cart unavailable — Shopify token not yet configured.", err);
+        // Graceful no-op until Storefront token is added to env vars
       } finally {
         setIsLoading(false);
       }
