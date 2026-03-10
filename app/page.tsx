@@ -108,6 +108,25 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Full-width lifestyle image section */}
+      <section className="relative w-full" style={{ height: "60vh", minHeight: "360px" }}>
+        <Image
+          src="/images/lifestyle-1.png"
+          alt="Velour Cloud Rain Diffuser — ambient lifestyle"
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
+        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-center">
+          <p
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            className="text-3xl md:text-4xl font-semibold text-cream drop-shadow-md"
+          >
+            Your room, reimagined.
+          </p>
+        </div>
+      </section>
+
       <section className="py-20 px-4 bg-cream">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-12">
