@@ -6,6 +6,27 @@ export const metadata: Metadata = {
     "Velour Cloud was built for people who believe your space should feel as good as you want to feel.",
 };
 
+const promises = [
+  {
+    icon: "✦",
+    title: "Quality materials",
+    description:
+      "Every product is made from safe, durable materials we'd use in our own homes.",
+  },
+  {
+    icon: "◈",
+    title: "Thoughtful design",
+    description:
+      "We obsess over the details so your space feels considered, not cluttered.",
+  },
+  {
+    icon: "◎",
+    title: "Backed by real support",
+    description:
+      "A real person reads every email at hello@velourcloud.com — no bots, no runaround.",
+  },
+];
+
 const values = [
   {
     name: "Intentionality",
@@ -114,6 +135,34 @@ export default function AboutPage() {
                 </h3>
                 <p className="text-sm text-plum/70 leading-relaxed">
                   {v.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <h2
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            className="text-3xl font-semibold text-plum mb-8"
+          >
+            Our Promise
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {promises.map((p) => (
+              <div
+                key={p.title}
+                className="p-6 rounded-2xl bg-lilac/10 border border-lilac/25"
+              >
+                <span className="text-2xl text-lilac block mb-4">{p.icon}</span>
+                <h3
+                  style={{ fontFamily: "var(--font-cormorant), serif" }}
+                  className="text-xl font-semibold text-plum mb-2"
+                >
+                  {p.title}
+                </h3>
+                <p className="text-sm text-plum/70 leading-relaxed">
+                  {p.description}
                 </p>
               </div>
             ))}

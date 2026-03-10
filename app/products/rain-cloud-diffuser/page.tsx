@@ -101,6 +101,23 @@ export default function ProductPage() {
             </p>
 
             <AddToCart />
+
+            <div className="mt-5 flex flex-wrap gap-3">
+              {[
+                { icon: "🔒", label: "Secure Checkout" },
+                { icon: "🚚", label: "Free shipping over $35" },
+                { icon: "↩", label: "30-day returns" },
+                { icon: "🌿", label: "Aromatherapy-grade" },
+              ].map((badge) => (
+                <span
+                  key={badge.label}
+                  className="flex items-center gap-1.5 bg-cream border border-lilac/30 rounded-full px-3 py-1.5 text-xs font-medium text-plum"
+                >
+                  <span>{badge.icon}</span>
+                  {badge.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -160,6 +177,33 @@ export default function ProductPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className="mt-20 max-w-3xl">
+          <h2
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            className="text-3xl font-semibold text-plum mb-6"
+          >
+            What&apos;s in the box?
+          </h2>
+          <div className="rounded-2xl border border-lilac/30 bg-white/40 overflow-hidden">
+            {[
+              "1× Rain Cloud Diffuser",
+              "1× USB-C cable",
+              "1× Essential oil tester sachet",
+              "1× User manual",
+            ].map((item, i) => (
+              <div
+                key={item}
+                className={`flex items-center gap-3 px-6 py-3.5 text-sm ${
+                  i % 2 === 0 ? "bg-white/30" : ""
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-lilac shrink-0" />
+                <span className="text-plum/80">{item}</span>
+              </div>
+            ))}
           </div>
         </div>
 

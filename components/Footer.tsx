@@ -113,7 +113,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-cream/10 pt-8 text-center text-xs text-cream/40">
-          &copy; 2026 Velour Cloud. All rights reserved.
+          &copy; 2025 Velour Cloud. All rights reserved.
         </div>
       </div>
     </footer>
