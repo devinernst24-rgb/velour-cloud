@@ -5,7 +5,7 @@ import AddToCart from "@/components/AddToCart";
 export const metadata: Metadata = {
   title: "Velour Cloud Smart Scent Diffuser — 24.99 CAD | Velour Cloud",
   description:
-    "Rechargeable auto-spray fragrance diffuser with refillable pod. Wall-mount or desktop. Covers 50m2. 4 spray intervals. 24.99 CAD free shipping.",
+    "Rechargeable auto-spray fragrance diffuser with refillable water + essential oil pod. Wall-mount or desktop. Covers 50m2. 6 spray speeds. 24.99 CAD free shipping.",
 };
 
 const features = [
@@ -15,9 +15,9 @@ const features = [
       "Built-in USB-C rechargeable battery — no cords needed during use. Charge once, fragrance your space for days.",
   },
   {
-    title: "4 auto-spray intervals",
+    title: "6 Auto-Spray Speeds (10/20/30/40/50 min + continuous)",
     description:
-      "Set to 15, 23, 30, or 45 minutes. The diffuser sprays automatically on your schedule so you never have to think about it.",
+      "Six speeds from every 10 minutes up to continuous spray. The diffuser sprays automatically on your schedule so you never have to think about it.",
   },
   {
     title: "Refillable fragrance pod",
@@ -48,7 +48,7 @@ const features = [
 
 const specs = [
   ["Battery", "Rechargeable lithium (USB-C)"],
-  ["Spray Intervals", "15 / 23 / 30 / 45 minutes"],
+  ["Spray Intervals", "10 / 20 / 30 / 40 / 50 min + Continuous (6 speeds)"],
   ["Pod Capacity", "Refillable water + fragrance pod"],
   ["Coverage", "Up to 50 m²"],
   ["Mounting", "Wall-mount (hook included) or desktop"],
@@ -103,10 +103,15 @@ export default function ProductPage() {
                 priority
               />
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {["/images/product-white.png", "/images/product-pink.png", "/images/product-blue.png"].map((src, i) => (
+            <div className="grid grid-cols-4 gap-3">
+              {[
+                { src: "/images/product-white.png", alt: "White variant" },
+                { src: "/images/product-pink.png", alt: "Pink variant" },
+                { src: "/images/product-blue.png", alt: "Blue variant" },
+                { src: "/images/product-variants.jpg", alt: "Fragrance refill pod variety" },
+              ].map(({ src, alt }, i) => (
                 <div key={i} className="rounded-xl overflow-hidden aspect-square relative">
-                  <Image src={src} alt={`Variant ${i + 1}`} fill className="object-cover" />
+                  <Image src={src} alt={alt} fill className="object-cover" />
                 </div>
               ))}
             </div>
@@ -138,9 +143,10 @@ export default function ProductPage() {
 
             <p className="text-sm text-plum/70 leading-relaxed mb-8">
               A rechargeable automatic fragrance diffuser with a refillable water
-              pod. Set your spray interval — 15, 23, 30, or 45 minutes — then
-              wall-mount it or place it on any surface. Covers up to 50m² with a
-              warm amber glow. Set it once and your space stays fresh all day.
+              + essential oil pod. Choose from 6 spray speeds — every 10, 20, 30,
+              40, or 50 minutes, or continuous — then wall-mount it or place it
+              on any surface. Covers up to 50m² with a warm amber glow. Set it
+              once and your space stays fresh all day.
             </p>
 
             <AddToCart />
@@ -223,6 +229,41 @@ export default function ProductPage() {
           </div>
         </div>
 
+        <div className="mt-20">
+          <h2
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            className="text-3xl font-semibold text-plum mb-8"
+          >
+            Available Fragrances
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { code: "A", name: "Lavender & Bergamot", notes: "Cedar & amber base" },
+              { code: "B", name: "Bluebell & Lily of the Valley", notes: "Amber base" },
+              { code: "C", name: "Fresh Floral", notes: "Tuberose, water lily & amber" },
+              { code: "D", name: "Peach & Apple", notes: "Sandalwood & musk base" },
+              { code: "E", name: "Eucalyptus & Bamboo", notes: "Cedar & ambergris base" },
+              { code: "F", name: "Gardenia & Pear", notes: "Bergamot & white rose base" },
+            ].map(({ code, name, notes }) => (
+              <div
+                key={code}
+                className="flex items-start gap-4 rounded-2xl border border-lilac/30 bg-white/40 px-5 py-4"
+              >
+                <span
+                  style={{ fontFamily: "var(--font-cormorant), serif" }}
+                  className="w-8 h-8 rounded-full bg-lilac/30 flex items-center justify-center shrink-0 text-base font-semibold text-plum mt-0.5"
+                >
+                  {code}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-plum">{name}</p>
+                  <p className="text-xs text-plum/55 mt-0.5">{notes}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-20 max-w-3xl">
           <h2
             style={{ fontFamily: "var(--font-cormorant), serif" }}
@@ -265,10 +306,11 @@ export default function ProductPage() {
               Diffuser was designed for exactly that feeling — automatically.
             </p>
             <p>
-              Fill the refillable pod with water and your fragrance of choice,
-              set your spray interval, and it handles the rest. No timers, no
-              reminders, no manual spraying. Just consistent, beautiful scent on
-              your schedule.
+              Fill the refillable water + essential oil pod with your fragrance
+              of choice, dial in one of 6 spray speeds — from every 10 minutes
+              to continuous — and it handles the rest. No timers, no reminders,
+              no manual spraying. Just consistent, beautiful scent on your
+              schedule.
             </p>
             <p>
               Wall-mount it in your entryway, living room, or bedroom for a

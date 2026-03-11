@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "What are the spray interval options?",
     answer:
-      "You can choose from four auto-spray intervals: 15, 23, 30, or 45 minutes. The diffuser sprays automatically at your chosen interval without any manual input. The 30 or 45 minute setting is ideal for a subtle background scent, while 15 minutes gives a more pronounced fragrance presence.",
+      "You can choose from six auto-spray speeds: Speed 1 (every 10 min), Speed 2 (every 20 min), Speed 3 (every 30 min), Speed 4 (every 40 min), Speed 5 (every 50 min), and Speed 6 (continuous spray). The diffuser sprays automatically at your chosen speed without any manual input. Speeds 4–5 are ideal for a subtle background scent; Speed 1–2 give a more pronounced fragrance presence; Speed 6 fills the room continuously.",
   },
   {
     question: "How do I wall-mount the diffuser?",

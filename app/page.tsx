@@ -55,7 +55,7 @@ const steps = [
     number: "02",
     title: "Set Your Interval",
     description:
-      "Choose your auto-spray interval: 15, 23, 30, or 45 minutes. Wall-mount it or set it on a surface. The diffuser does the rest.",
+      "Choose from 6 spray speeds — from every 10 minutes to continuous. Wall-mount it or set it on a surface. The diffuser does the rest.",
   },
   {
     number: "03",
