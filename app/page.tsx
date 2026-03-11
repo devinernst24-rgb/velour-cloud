@@ -6,29 +6,41 @@ import TrustBadges from "@/components/TrustBadges";
 import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Velour Cloud — Aesthetic Rain Diffuser & Night Light",
+  title: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
   description:
-    "Transform your space with the Rain Cloud Aroma Diffuser. Soft mist, 7-colour LED glow, and aromatherapy in one dreamy device. Free shipping over $35 CAD.",
+    "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
 };
 
 const reviews = [
   {
-    name: "Maya R.",
-    location: "Vancouver, BC",
+    name: "Samantha L.",
+    location: "Toronto, ON",
     quote:
-      "I got this for my desk while working from home and honestly it transformed my whole vibe. The mist is so soft and the purple LED is absolutely gorgeous. Already ordered one for my sister.",
+      "I keep this on my desk while I work from home. It's so quiet I forget it's on — until I notice how calm and focused I feel. The pink one matches my whole setup perfectly.",
   },
   {
     name: "Jade T.",
-    location: "Toronto, ON",
+    location: "Vancouver, BC",
     quote:
-      "I was sceptical but this thing is literally on my TikTok For You Page every week so I finally caved. Zero regrets. It's quiet, it smells amazing with lavender oil, and it looks like a cloud straight out of a Studio Ghibli film. 10/10.",
+      "I was sceptical but this thing is literally on my TikTok For You Page every week so I finally caved. Zero regrets. It's quiet, it smells amazing with lavender oil, and it looks so minimal on my nightstand. 10/10.",
   },
   {
     name: "Priya K.",
     location: "Calgary, AB",
     quote:
       "Bought two — one for my bedroom and one as a gift. The packaging is really clean and it arrived way faster than I expected. The mist output is strong for how small it is. Genuinely love this thing.",
+  },
+  {
+    name: "Natalie B.",
+    location: "Ottawa, ON",
+    quote:
+      "Such a cute little diffuser! I plug it into my laptop USB and it just runs quietly all day. The white one looks so clean on my desk. Way better than I expected for the price.",
+  },
+  {
+    name: "Chloe M.",
+    location: "Montreal, QC",
+    quote:
+      "Got the blue one and it's honestly a vibe. Super easy to use, the mist comes out strong, and it auto-shuts off so I don't have to worry about it overnight. Already recommended it to three friends.",
   },
 ];
 
@@ -37,7 +49,7 @@ const steps = [
     number: "01",
     title: "Fill",
     description:
-      "Pour water up to the fill line (about 130 mL). No filters, no complicated tanks.",
+      "Pour water up to the fill line (about 40 mL). No filters, no complicated tanks.",
   },
   {
     number: "02",
@@ -47,9 +59,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Let It Rain",
+    title: "Plug In & Breathe",
     description:
-      "Power on, choose your LED colour, and let the mist do its thing.",
+      "Connect to any USB port, press the button, and let the soft mist do its thing.",
   },
 ];
 
@@ -66,17 +78,18 @@ export default function HomePage() {
               style={{ fontFamily: "var(--font-cormorant), serif" }}
               className="text-6xl md:text-7xl lg:text-8xl font-semibold text-plum leading-[1.05] tracking-tight mb-6"
             >
-              Your calm starts here.
+              Calm Your Space in Seconds
             </h1>
             <p className="text-base md:text-lg text-plum/70 leading-relaxed max-w-xl mb-10">
-              The Rain Cloud Diffuser fills your space with scented mist and a
-              dreamy LED glow — so every night feels like a soft reset.
+              A palm-sized ultrasonic diffuser that turns any desk, nightstand,
+              or wall into a soft, scented escape. Near-silent, beautifully
+              minimal, and made for modern Canadian living.
             </p>
             <Link
               href="/products/rain-cloud-diffuser"
               className="inline-flex items-center gap-2 bg-plum text-cream px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-plum/90 transition-colors"
             >
-              Shop the Diffuser
+              Reimagine My Room
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -122,7 +135,7 @@ export default function HomePage() {
             style={{ fontFamily: "var(--font-cormorant), serif" }}
             className="text-3xl md:text-4xl font-semibold text-cream drop-shadow-md"
           >
-            Your room, reimagined.
+            Soft Living, Elevated
           </p>
         </div>
       </section>

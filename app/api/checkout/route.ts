@@ -3,9 +3,11 @@ import Stripe from "stripe";
 
 // Server-side authoritative pricing — never trust client price
 const PRODUCT_CATALOG: Record<string, { name: string; price: number }> = {
-  "48065754792103": { name: "Velour Cloud Rain Diffuser — Ivory White", price: 44.99 },
-  "48065759314087": { name: "Velour Cloud Rain Diffuser — Soft Grey", price: 44.99 },
-  "48065759346855": { name: "Velour Cloud Rain Diffuser — Misty Blue", price: 44.99 },
+  "diffuser-white": { name: "Velour Cloud™ Mini USB Diffuser — White", price: 24.99 },
+  "diffuser-pink": { name: "Velour Cloud™ Mini USB Diffuser — Pink", price: 24.99 },
+  "diffuser-blue": { name: "Velour Cloud™ Mini USB Diffuser — Blue", price: 24.99 },
+  "diffuser-green": { name: "Velour Cloud™ Mini USB Diffuser — Green", price: 24.99 },
+  "diffuser-gray": { name: "Velour Cloud™ Mini USB Diffuser — Gray", price: 24.99 },
   "upsell-3oil": { name: "Essential Oil Bundle (3-pack)", price: 14.99 },
   "upsell-5oil": { name: "Essential Oil Bundle (5-pack)", price: 22.99 },
 };

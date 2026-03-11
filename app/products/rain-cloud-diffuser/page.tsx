@@ -3,68 +3,68 @@ import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 
 export const metadata: Metadata = {
-  title: "Rain Cloud Diffuser — 7-Color LED Aroma Mist | Velour Cloud",
+  title: "Mini USB Aromatherapy Diffuser (40ml) — $24.99 CAD | Velour Cloud",
   description:
-    "Cool mist humidifier + aromatherapy diffuser + 7-colour night light. Whisper-quiet, auto shut-off, USB-C. $44.99 CAD. Free shipping over $35.",
+    "Palm-sized ultrasonic aromatherapy diffuser. Near-silent, USB-powered, auto shut-off. $24.99 CAD with free shipping in Canada.",
 };
 
 const features = [
   {
-    title: "Rainfall mist effect",
+    title: "Ultrasonic cool mist",
     description:
-      "Ultra-fine cool mist simulates the calming feeling of gentle rain.",
+      "Ultra-fine mist disperses your essential oils evenly without heat — preserving full scent integrity.",
   },
   {
-    title: "7-colour LED night light",
+    title: "Near-silent operation",
     description:
-      "Cycles through soft hues or holds a single colour; adjustable brightness.",
+      "Under 30 dB, ideal for bedrooms, home offices, nurseries, and meditation spaces.",
+  },
+  {
+    title: "Universal USB power",
+    description:
+      "Plugs into any USB port — laptop, power bank, wall adapter, or smart hub.",
   },
   {
     title: "Aromatherapy-ready",
     description:
-      "Compatible with all water-soluble essential oils for scented diffusion.",
-  },
-  {
-    title: "Whisper-quiet operation",
-    description:
-      "Under 30 dB, ideal for bedrooms, nurseries, offices.",
+      "Compatible with all water-soluble essential oils. Lavender, eucalyptus, citrus — your mood, your choice.",
   },
   {
     title: "Auto shut-off safety",
     description:
-      "Automatically powers off when water level is critically low.",
+      "Automatically powers off when water level is critically low, so you can set it and forget it.",
   },
   {
     title: "Dual mist modes",
     description:
-      "Continuous or intermittent mist for customised humidity output.",
+      "Continuous or intermittent mist for customised output and extended run time.",
   },
   {
-    title: "Gift-ready design",
+    title: "5 colour options",
     description:
-      "Minimal packaging, compact, beautiful enough to live on any surface.",
+      "White, Pink, Blue, Green, and Gray — designed to complement any aesthetic.",
   },
 ];
 
 const specs = [
-  ["Dimensions", "~12 cm (H) x 10 cm (W)"],
-  ["Water Capacity", "130 mL"],
-  ["LED Colors", "7 + white"],
+  ["Dimensions", "~10 cm (H) x 8 cm (W)"],
+  ["Water Capacity", "40 mL"],
   ["Mist Modes", "Continuous / Intermittent"],
   ["Noise Level", "< 30 dB"],
-  ["Power", "USB-C (cable included)"],
+  ["Power", "USB (cable included)"],
   ["Auto Shut-Off", "Yes (low water)"],
-  ["Material", "ABS plastic, soft silicone cloud cap"],
-  ["Coverage", "Up to 20 m²"],
-  ["Run Time", "Up to 5 hours (continuous) / 8 hours (intermittent)"],
+  ["Material", "BPA-free ABS plastic"],
+  ["Coverage", "Up to 10 m²"],
+  ["Run Time", "Up to 4 hours (continuous) / 6 hours (intermittent)"],
+  ["Available Colours", "White, Pink, Blue, Green, Gray"],
 ];
 
 const jsonLd = {
   "@context": "https://schema.org/",
   "@type": "Product",
-  name: "Velour Cloud Rain Diffuser — 7-Color LED Aroma Mist Light",
+  name: "Velour Cloud™ Mini USB Aromatherapy Diffuser (40ml)",
   description:
-    "Cool mist humidifier + aromatherapy diffuser + 7-colour night light. Whisper-quiet, auto shut-off, USB-C. Free shipping over $35 CAD.",
+    "Palm-sized ultrasonic aromatherapy diffuser. Near-silent, USB-powered, auto shut-off. Free shipping in Canada.",
   brand: {
     "@type": "Brand",
     name: "Velour Cloud",
@@ -73,7 +73,7 @@ const jsonLd = {
   offers: {
     "@type": "Offer",
     priceCurrency: "CAD",
-    price: "44.99",
+    price: "24.99",
     availability: "https://schema.org/InStock",
     url: "https://velourcloud.com/products/rain-cloud-diffuser",
   },
@@ -104,7 +104,7 @@ export default function ProductPage() {
               />
             </div>
             <div className="grid grid-cols-3 gap-3">
-              {["/images/product-white.png", "/images/product-grey.png", "/images/product-blue.png"].map((src, i) => (
+              {["/images/product-white.png", "/images/product-pink.png", "/images/product-blue.png"].map((src, i) => (
                 <div key={i} className="rounded-xl overflow-hidden aspect-square relative">
                   <Image src={src} alt={`Variant ${i + 1}`} fill className="object-cover" />
                 </div>
@@ -120,7 +120,7 @@ export default function ProductPage() {
               style={{ fontFamily: "var(--font-cormorant), serif" }}
               className="text-4xl md:text-5xl font-semibold text-plum mb-3 leading-tight"
             >
-              Velour Cloud Rain Diffuser — 7-Color LED Aroma Mist Light
+              Velour Cloud™ Mini USB Aromatherapy Diffuser (40ml)
             </h1>
 
             {/* Star rating + review count */}
@@ -137,10 +137,9 @@ export default function ProductPage() {
             </div>
 
             <p className="text-sm text-plum/70 leading-relaxed mb-8">
-              Turn your room into a rainfall dream. Our Rain Cloud Diffuser fills
-              the air with scented mist and a soft glow that shifts through 7
-              dreamy colours. It&apos;s part humidifier, part night light, part vibe
-              upgrade.
+              A palm-sized USB diffuser that turns any desk, nightstand, or shelf
+              into a soft, scented escape. Near-silent ultrasonic mist, auto
+              shut-off, and five beautiful colours to match your space.
             </p>
 
             <AddToCart />
@@ -148,7 +147,7 @@ export default function ProductPage() {
             <div className="mt-5 flex flex-wrap gap-3">
               {[
                 { icon: "🔒", label: "Secure Checkout" },
-                { icon: "🚚", label: "Free shipping over $35" },
+                { icon: "🚚", label: "Free shipping in Canada" },
                 { icon: "↩", label: "30-day returns" },
                 { icon: "🌿", label: "Aromatherapy-grade" },
               ].map((badge) => (
@@ -232,8 +231,8 @@ export default function ProductPage() {
           </h2>
           <div className="rounded-2xl border border-lilac/30 bg-white/40 overflow-hidden">
             {[
-              "1× Rain Cloud Diffuser",
-              "1× USB-C cable",
+              "1× Velour Cloud Mini USB Diffuser",
+              "1× USB cable",
               "1× Essential oil tester sachet",
               "1× User manual",
             ].map((item, i) => (
@@ -259,30 +258,28 @@ export default function ProductPage() {
           </h2>
           <div className="space-y-4 text-sm text-plum/70 leading-relaxed">
             <p>
-              Some rooms just feel different. Softer. Quieter. Like the air
-              itself has been curated. The Velour Cloud Rain Diffuser was designed
-              for exactly that feeling.
+              Some spaces just feel different. Calmer. More intentional. Like
+              the air itself has been considered. The Velour Cloud Mini USB
+              Diffuser was designed for exactly that feeling.
             </p>
             <p>
-              Shaped like a cloud that floats on a misty base, it releases a
-              cool, ultra-fine aroma mist that humidifies your space while
-              diffusing your favourite essential oil blend. The 7-colour LED glow
-              cycles through soft, dreamy hues — or locks on the one that matches
-              your mood.
+              Small enough to sit on your palm, powerful enough to transform a
+              room. It releases a cool, ultra-fine aroma mist through ultrasonic
+              technology — no heat, no noise, just a quiet stream of scented air
+              that fills your space in minutes.
             </p>
             <p>
-              Use it while you wind down before bed. While you journal in the
-              morning. While you work from home and need the space to feel less
-              like a desk and more like a retreat.
+              Use it at your desk while you focus. On your nightstand as you
+              wind down. In any room that needs a little more intention and a
+              little less noise.
             </p>
             <p>
-              It&apos;s whisper-quiet, auto-shuts off when the water runs low, and
-              takes less than 60 seconds to set up. No wires to hide, no
-              complicated settings — just fill, drop in your oil, and let it do
-              what it does best.
+              It auto-shuts off when the water runs low and takes less than 60
+              seconds to set up. Plug it into any USB port, fill to the line,
+              add your favourite oil, and let it do what it does best.
             </p>
             <p className="font-medium text-plum">
-              Your room is a reflection of how you want to feel. Make it
+              Your space is a reflection of how you want to feel. Make it
               beautiful.
             </p>
           </div>

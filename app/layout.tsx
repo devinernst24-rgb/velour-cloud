@@ -26,35 +26,35 @@ const BASE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Velour Cloud — Aesthetic Rain Diffuser & Night Light",
+    default: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
     template: "%s | Velour Cloud",
   },
   description:
-    "Your room, reimagined. The Rain Cloud Aroma Diffuser fills your space with scented mist and a dreamy LED glow. Free shipping on orders over $35.",
+    "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
     type: "website",
     siteName: "Velour Cloud",
-    title: "Velour Cloud — Your room, reimagined.",
+    title: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
     description:
-      "Your room, reimagined. The Rain Cloud Aroma Diffuser fills your space with scented mist and a dreamy LED glow. Free shipping on orders over $35.",
+      "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
     url: BASE_URL,
     images: [
       {
         url: "/images/product-hero.png",
         width: 1200,
         height: 630,
-        alt: "Velour Cloud Rain Cloud Diffuser",
+        alt: "Velour Cloud Mini USB Diffuser",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Velour Cloud — Your room, reimagined.",
+    title: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
     description:
-      "The Rain Cloud Aroma Diffuser fills your space with scented mist and a dreamy LED glow. Free shipping on orders over $35.",
+      "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
     images: ["/images/product-hero.png"],
   },
 };
@@ -74,9 +74,7 @@ export default function RootLayout({
           className="w-full text-center py-2 px-4 text-xs font-medium tracking-wide"
           style={{ backgroundColor: "#2D2A35", color: "#EDE6DC" }}
         >
-          Free shipping on orders over $35 CAD &nbsp;·&nbsp; Use code{" "}
-          <span className="font-semibold">CLOUD10</span> for 10% off your first
-          order
+          Free Shipping in Canada 🇨🇦 | Now $24.99 (Was $39.99)
         </div>
         <CartProvider>
           <Header />

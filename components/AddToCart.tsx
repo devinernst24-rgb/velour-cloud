@@ -4,15 +4,19 @@ import { useState, useEffect, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 
 const variants = [
-  { name: "Rain Cloud Diffuser — Ivory White", price: 44.99, variantId: "48065754792103" },
-  { name: "Rain Cloud Diffuser — Soft Grey",   price: 44.99, variantId: "48065759314087" },
-  { name: "Rain Cloud Diffuser — Misty Blue",  price: 44.99, variantId: "48065759346855" },
+  { name: "Velour Cloud™ Mini USB Diffuser — White", price: 24.99, variantId: "diffuser-white" },
+  { name: "Velour Cloud™ Mini USB Diffuser — Pink",  price: 24.99, variantId: "diffuser-pink" },
+  { name: "Velour Cloud™ Mini USB Diffuser — Blue",  price: 24.99, variantId: "diffuser-blue" },
+  { name: "Velour Cloud™ Mini USB Diffuser — Green", price: 24.99, variantId: "diffuser-green" },
+  { name: "Velour Cloud™ Mini USB Diffuser — Gray",  price: 24.99, variantId: "diffuser-gray" },
 ];
 
 const variantLabels: Record<string, string> = {
-  "48065754792103": "Ivory White",
-  "48065759314087": "Soft Grey",
-  "48065759346855": "Misty Blue",
+  "diffuser-white": "White",
+  "diffuser-pink":  "Pink",
+  "diffuser-blue":  "Blue",
+  "diffuser-green": "Green",
+  "diffuser-gray":  "Gray",
 };
 
 const upsells = [
@@ -124,7 +128,7 @@ export default function AddToCart() {
               ${total.toFixed(2)} CAD
             </span>
             <span className="text-base text-plum/40 line-through">
-              $69.99 CAD
+              $39.99 CAD
             </span>
             <span className="bg-plum text-cream text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide">
               Sale
@@ -142,7 +146,7 @@ export default function AddToCart() {
 
           {/* Shipping disclosure */}
           <p className="text-xs text-slate-mist mt-3 text-center">
-            🚚 Free shipping · Estimated delivery 7–14 business days
+            🇨🇦 Free shipping in Canada · Estimated delivery 7–14 business days
           </p>
 
           {/* CLOUD10 discount callout */}
@@ -161,7 +165,7 @@ export default function AddToCart() {
         <div className="flex items-center gap-3 px-4 py-3 safe-area-pb">
           <div className="flex-1 min-w-0">
             <p className="text-cream text-xs font-semibold truncate">
-              Rain Cloud Diffuser
+              Mini USB Diffuser
             </p>
             <p className="text-cream/60 text-xs">
               ${selectedVariant.price.toFixed(2)} CAD
