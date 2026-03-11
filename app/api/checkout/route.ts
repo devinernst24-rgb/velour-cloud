@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const stripe = new Stripe(secretKey, { apiVersion: "2026-02-25.clover" as any });
+  const stripe = new Stripe(secretKey, { apiVersion: "2025-02-24.acacia" });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://velourcloud.com";
 
   let session;
