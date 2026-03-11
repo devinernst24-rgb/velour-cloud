@@ -3,68 +3,68 @@ import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 
 export const metadata: Metadata = {
-  title: "Mini USB Aromatherapy Diffuser (40ml) — $24.99 CAD | Velour Cloud",
+  title: "Velour Cloud Smart Scent Diffuser — 24.99 CAD | Velour Cloud",
   description:
-    "Palm-sized ultrasonic aromatherapy diffuser. Near-silent, USB-powered, auto shut-off. $24.99 CAD with free shipping in Canada.",
+    "Rechargeable auto-spray fragrance diffuser with refillable pod. Wall-mount or desktop. Covers 50m2. 4 spray intervals. 24.99 CAD free shipping.",
 };
 
 const features = [
   {
-    title: "Ultrasonic cool mist",
+    title: "Rechargeable lithium battery",
     description:
-      "Ultra-fine mist disperses your essential oils evenly without heat — preserving full scent integrity.",
+      "Built-in USB-C rechargeable battery — no cords needed during use. Charge once, fragrance your space for days.",
+  },
+  {
+    title: "4 auto-spray intervals",
+    description:
+      "Set to 15, 23, 30, or 45 minutes. The diffuser sprays automatically on your schedule so you never have to think about it.",
+  },
+  {
+    title: "Refillable fragrance pod",
+    description:
+      "The water + fragrance pod snaps in and out in seconds. Swap scents anytime — lavender, citrus, cedar, whatever sets the mood.",
+  },
+  {
+    title: "Wall-mount or desktop",
+    description:
+      "Includes a wall hook so you can mount it cord-free, or set it on any surface. Fits any room, any aesthetic.",
+  },
+  {
+    title: "Covers up to 50m²",
+    description:
+      "Powerful enough to scent a large room — living rooms, open-concept spaces, home offices, bedrooms.",
+  },
+  {
+    title: "Warm amber LED glow",
+    description:
+      "A soft, warm amber light adds ambient atmosphere. Toggle it on or off to match the vibe.",
   },
   {
     title: "Near-silent operation",
     description:
-      "Under 30 dB, ideal for bedrooms, home offices, nurseries, and meditation spaces.",
-  },
-  {
-    title: "Universal USB power",
-    description:
-      "Plugs into any USB port — laptop, power bank, wall adapter, or smart hub.",
-  },
-  {
-    title: "Aromatherapy-ready",
-    description:
-      "Compatible with all water-soluble essential oils. Lavender, eucalyptus, citrus — your mood, your choice.",
-  },
-  {
-    title: "Auto shut-off safety",
-    description:
-      "Automatically powers off when water level is critically low, so you can set it and forget it.",
-  },
-  {
-    title: "Dual mist modes",
-    description:
-      "Continuous or intermittent mist for customised output and extended run time.",
-  },
-  {
-    title: "5 colour options",
-    description:
-      "White, Pink, Blue, Green, and Gray — designed to complement any aesthetic.",
+      "Ultra-quiet auto-spray mechanism — you'll smell it before you hear it. Ideal for bedrooms, offices, and nurseries.",
   },
 ];
 
 const specs = [
-  ["Dimensions", "~10 cm (H) x 8 cm (W)"],
-  ["Water Capacity", "40 mL"],
-  ["Mist Modes", "Continuous / Intermittent"],
-  ["Noise Level", "< 30 dB"],
-  ["Power", "USB (cable included)"],
-  ["Auto Shut-Off", "Yes (low water)"],
+  ["Battery", "Rechargeable lithium (USB-C)"],
+  ["Spray Intervals", "15 / 23 / 30 / 45 minutes"],
+  ["Pod Capacity", "Refillable water + fragrance pod"],
+  ["Coverage", "Up to 50 m²"],
+  ["Mounting", "Wall-mount (hook included) or desktop"],
+  ["LED", "Warm amber glow (on/off)"],
+  ["Noise Level", "Near-silent"],
+  ["Charging", "USB-C cable included"],
   ["Material", "BPA-free ABS plastic"],
-  ["Coverage", "Up to 10 m²"],
-  ["Run Time", "Up to 4 hours (continuous) / 6 hours (intermittent)"],
   ["Available Colours", "White, Pink, Blue, Green, Gray"],
 ];
 
 const jsonLd = {
   "@context": "https://schema.org/",
   "@type": "Product",
-  name: "Velour Cloud™ Mini USB Aromatherapy Diffuser (40ml)",
+  name: "Velour Cloud Smart Scent Diffuser",
   description:
-    "Palm-sized ultrasonic aromatherapy diffuser. Near-silent, USB-powered, auto shut-off. Free shipping in Canada.",
+    "Rechargeable auto-spray fragrance diffuser with refillable pod. Wall-mount or desktop. Covers 50m2. Free shipping in Canada.",
   brand: {
     "@type": "Brand",
     name: "Velour Cloud",
@@ -120,7 +120,7 @@ export default function ProductPage() {
               style={{ fontFamily: "var(--font-cormorant), serif" }}
               className="text-4xl md:text-5xl font-semibold text-plum mb-3 leading-tight"
             >
-              Velour Cloud™ Mini USB Aromatherapy Diffuser (40ml)
+              Velour Cloud Smart Scent Diffuser
             </h1>
 
             {/* Star rating + review count */}
@@ -137,9 +137,10 @@ export default function ProductPage() {
             </div>
 
             <p className="text-sm text-plum/70 leading-relaxed mb-8">
-              A palm-sized USB diffuser that turns any desk, nightstand, or shelf
-              into a soft, scented escape. Near-silent ultrasonic mist, auto
-              shut-off, and five beautiful colours to match your space.
+              A rechargeable automatic fragrance diffuser with a refillable water
+              pod. Set your spray interval — 15, 23, 30, or 45 minutes — then
+              wall-mount it or place it on any surface. Covers up to 50m² with a
+              warm amber glow. Set it once and your space stays fresh all day.
             </p>
 
             <AddToCart />
@@ -231,9 +232,10 @@ export default function ProductPage() {
           </h2>
           <div className="rounded-2xl border border-lilac/30 bg-white/40 overflow-hidden">
             {[
-              "1× Velour Cloud Mini USB Diffuser",
-              "1× USB cable",
-              "1× Essential oil tester sachet",
+              "1× Velour Cloud Smart Scent Diffuser",
+              "1× USB-C charging cable",
+              "1× Refillable fragrance pod",
+              "1× Wall hook + mounting hardware",
               "1× User manual",
             ].map((item, i) => (
               <div
@@ -259,28 +261,30 @@ export default function ProductPage() {
           <div className="space-y-4 text-sm text-plum/70 leading-relaxed">
             <p>
               Some spaces just feel different. Calmer. More intentional. Like
-              the air itself has been considered. The Velour Cloud Mini USB
-              Diffuser was designed for exactly that feeling.
+              the air itself has been considered. The Velour Cloud Smart Scent
+              Diffuser was designed for exactly that feeling — automatically.
             </p>
             <p>
-              Small enough to sit on your palm, powerful enough to transform a
-              room. It releases a cool, ultra-fine aroma mist through ultrasonic
-              technology — no heat, no noise, just a quiet stream of scented air
-              that fills your space in minutes.
+              Fill the refillable pod with water and your fragrance of choice,
+              set your spray interval, and it handles the rest. No timers, no
+              reminders, no manual spraying. Just consistent, beautiful scent on
+              your schedule.
             </p>
             <p>
-              Use it at your desk while you focus. On your nightstand as you
-              wind down. In any room that needs a little more intention and a
-              little less noise.
+              Wall-mount it in your entryway, living room, or bedroom for a
+              cord-free look — or set it on a surface wherever you need it most.
+              The rechargeable lithium battery means you&apos;re not tethered to
+              an outlet. Charge once via USB-C and enjoy days of automatic
+              fragrance.
             </p>
             <p>
-              It auto-shuts off when the water runs low and takes less than 60
-              seconds to set up. Plug it into any USB port, fill to the line,
-              add your favourite oil, and let it do what it does best.
+              With coverage up to 50m² and a warm amber LED glow, it transforms
+              any space into something that feels intentional, curated, and
+              unmistakably yours.
             </p>
             <p className="font-medium text-plum">
-              Your space is a reflection of how you want to feel. Make it
-              beautiful.
+              Your space is a reflection of how you want to feel. Set it once.
+              Make it beautiful.
             </p>
           </div>
         </div>

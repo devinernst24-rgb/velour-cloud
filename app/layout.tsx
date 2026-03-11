@@ -26,20 +26,20 @@ const BASE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
+    default: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
     template: "%s | Velour Cloud",
   },
   description:
-    "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
+    "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
     type: "website",
     siteName: "Velour Cloud",
-    title: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
+    title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
     description:
-      "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
+      "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
     url: BASE_URL,
     images: [
       {
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
+    title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
     description:
-      "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
+      "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
     images: ["/images/product-hero.png"],
   },
 };
@@ -74,7 +74,7 @@ export default function RootLayout({
           className="w-full text-center py-2 px-4 text-xs font-medium tracking-wide"
           style={{ backgroundColor: "#2D2A35", color: "#EDE6DC" }}
         >
-          Free Shipping in Canada 🇨🇦 | Now $24.99 (Was $39.99)
+          Limited Time: 40% Off - Now 24.99 CAD (Was 39.99) Free Shipping to Canada
         </div>
         <CartProvider>
           <Header />

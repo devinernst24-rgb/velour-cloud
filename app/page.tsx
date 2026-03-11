@@ -6,9 +6,9 @@ import TrustBadges from "@/components/TrustBadges";
 import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Velour Cloud Mini USB Diffuser | $24.99 CAD",
+  title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
   description:
-    "Transform your space with the Velour Cloud Mini USB Diffuser. Near-silent, wall-mountable, and now $24.99 CAD with free shipping in Canada.",
+    "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
 };
 
 const reviews = [
@@ -16,52 +16,52 @@ const reviews = [
     name: "Samantha L.",
     location: "Toronto, ON",
     quote:
-      "I keep this on my desk while I work from home. It's so quiet I forget it's on — until I notice how calm and focused I feel. The pink one matches my whole setup perfectly.",
+      "I wall-mounted mine in the hallway and set the 23-minute interval. Walk in the door and the whole place just smells incredible. Never have to think about it — it just goes.",
   },
   {
     name: "Jade T.",
     location: "Vancouver, BC",
     quote:
-      "I was sceptical but this thing is literally on my TikTok For You Page every week so I finally caved. Zero regrets. It's quiet, it smells amazing with lavender oil, and it looks so minimal on my nightstand. 10/10.",
+      "The auto-spray is a game changer. I set the 30-min interval for my bedroom and honestly forgot it was even running until my friend asked what smelled so good. Refillable pod is super easy too.",
   },
   {
     name: "Priya K.",
     location: "Calgary, AB",
     quote:
-      "Bought two — one for my bedroom and one as a gift. The packaging is really clean and it arrived way faster than I expected. The mist output is strong for how small it is. Genuinely love this thing.",
+      "Mounted it beside my front door and it runs on the 15-minute setting all day. The USB-C charging is so convenient — topped it up once and it lasted the whole week. Love this thing.",
   },
   {
     name: "Natalie B.",
     location: "Ottawa, ON",
     quote:
-      "Such a cute little diffuser! I plug it into my laptop USB and it just runs quietly all day. The white one looks so clean on my desk. Way better than I expected for the price.",
+      "The refillable pod design is brilliant. I swap out the fragrance depending on my mood. Set it to 45 minutes for my office so it's subtle but consistent. Totally worth it.",
   },
   {
     name: "Chloe M.",
     location: "Montreal, QC",
     quote:
-      "Got the blue one and it's honestly a vibe. Super easy to use, the mist comes out strong, and it auto-shuts off so I don't have to worry about it overnight. Already recommended it to three friends.",
+      "I was skeptical about auto-spray but it covers my whole living room (big open concept). Wall-mount looks so clean — no cords visible, just a sleek little diffuser doing its thing. 10/10.",
   },
 ];
 
 const steps = [
   {
     number: "01",
-    title: "Fill",
+    title: "Fill the Pod",
     description:
-      "Pour water up to the fill line (about 40 mL). No filters, no complicated tanks.",
+      "Fill the refillable water pod with water and add a few drops of your favourite fragrance. Snap it in place — no mess, no fuss.",
   },
   {
     number: "02",
-    title: "Add Your Oil",
+    title: "Set Your Interval",
     description:
-      "Drop 3-5 drops of your favourite essential oil into the water. You choose the mood.",
+      "Choose your auto-spray interval: 15, 23, 30, or 45 minutes. Wall-mount it or set it on a surface. The diffuser does the rest.",
   },
   {
     number: "03",
-    title: "Plug In & Breathe",
+    title: "Enjoy the Atmosphere",
     description:
-      "Connect to any USB port, press the button, and let the soft mist do its thing.",
+      "Your space fills with a warm, ambient scent on a perfect schedule. Recharge via USB-C when needed and keep going.",
   },
 ];
 
@@ -78,18 +78,17 @@ export default function HomePage() {
               style={{ fontFamily: "var(--font-cormorant), serif" }}
               className="text-6xl md:text-7xl lg:text-8xl font-semibold text-plum leading-[1.05] tracking-tight mb-6"
             >
-              Calm Your Space in Seconds
+              Your Room. Reimagined.
             </h1>
             <p className="text-base md:text-lg text-plum/70 leading-relaxed max-w-xl mb-10">
-              A palm-sized ultrasonic diffuser that turns any desk, nightstand,
-              or wall into a soft, scented escape. Near-silent, beautifully
-              minimal, and made for modern Canadian living.
+              A rechargeable automatic fragrance diffuser that scents your space
+              on your schedule. Refillable, wall-mountable, effortless.
             </p>
             <Link
               href="/products/rain-cloud-diffuser"
               className="inline-flex items-center gap-2 bg-plum text-cream px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-plum/90 transition-colors"
             >
-              Reimagine My Room
+              Refresh My Space
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -135,7 +134,7 @@ export default function HomePage() {
             style={{ fontFamily: "var(--font-cormorant), serif" }}
             className="text-3xl md:text-4xl font-semibold text-cream drop-shadow-md"
           >
-            Soft Living, Elevated
+            Smells Like Main Character Energy
           </p>
         </div>
       </section>

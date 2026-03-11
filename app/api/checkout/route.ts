@@ -23,8 +23,8 @@ const PRODUCT_CATALOG: Record<string, { name: string; price: number }> = {
   "diffuser-blue": { name: "Velour Cloud™ Mini USB Diffuser — Blue", price: 24.99 },
   "diffuser-green": { name: "Velour Cloud™ Mini USB Diffuser — Green", price: 24.99 },
   "diffuser-gray": { name: "Velour Cloud™ Mini USB Diffuser — Gray", price: 24.99 },
-  "upsell-3oil": { name: "Essential Oil Bundle (3-pack)", price: 14.99 },
-  "upsell-5oil": { name: "Essential Oil Bundle (5-pack)", price: 22.99 },
+  "upsell-3oil": { name: "3-Pack Fragrance Refill Set", price: 14.99 },
+  "upsell-5oil": { name: "6-Pack Fragrance Refill Set", price: 24.99 },
 };
 
 const ALLOWED_ORIGINS = [

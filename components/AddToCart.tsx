@@ -20,8 +20,8 @@ const variantLabels: Record<string, string> = {
 };
 
 const upsells = [
-  { label: "3-Oil Bundle", price: 14.99, id: "upsell-3oil" },
-  { label: "5-Oil Bundle", price: 22.99, id: "upsell-5oil" },
+  { label: "3-Pack Fragrance Refills", price: 14.99, id: "upsell-3oil" },
+  { label: "6-Pack Fragrance Refills", price: 24.99, id: "upsell-5oil" },
 ];
 
 export default function AddToCart() {
