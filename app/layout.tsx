@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
 
 
 const cormorant = Cormorant_Garamond({
@@ -79,6 +80,7 @@ export default function RootLayout({
         </div>
         <CartProvider>
           <Header />
+          <CartDrawer />
           <main>{children}</main>
           <Footer />
         </CartProvider>
