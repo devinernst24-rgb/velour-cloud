@@ -93,7 +93,7 @@ export default function CartDrawer() {
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
                     <p className="text-sm font-medium text-plum">
-                      ${(item.price * item.quantity).toFixed(2)} CAD
+                      ${(item.price * item.quantity).toFixed(2)} USD
                     </p>
                     <button
                       onClick={() => removeItem(item.id)}
@@ -112,7 +112,7 @@ export default function CartDrawer() {
           <div className="px-6 py-5 border-t border-lilac/30 space-y-4">
             <div className="flex justify-between text-sm font-medium text-plum">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)} CAD</span>
+              <span>${subtotal.toFixed(2)} USD</span>
             </div>
             <p className="text-xs text-plum/50">
               Shipping calculated at checkout.
