@@ -17,7 +17,8 @@ function isRateLimited(ip: string, limit: number, windowMs: number): boolean {
   return false;
 }
 
-const dataFile = path.join(process.cwd(), "data", "subscribers.json");
+// Vercel serverless: only /tmp is writable at runtime
+const dataFile = path.join("/tmp", "subscribers.json");
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
 const MAX_SUBSCRIBERS = 10_000;
 

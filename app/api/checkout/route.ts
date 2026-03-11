@@ -73,10 +73,13 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const stripe = new Stripe(secretKey, { apiVersion: "2026-02-25.clover" });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const stripe = new Stripe(secretKey, { apiVersion: "2026-02-25.clover" as any });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://velourcloud.com";
 
-  const session = await stripe.checkout.sessions.create({
+  let session;
+  try {
+    session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
     currency: "cad",
@@ -114,7 +117,11 @@ export async function POST(req: NextRequest) {
     },
     success_url: `${siteUrl}/order-success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${siteUrl}/products/rain-cloud-diffuser`,
-  });
+    });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : "Stripe error";
+    return NextResponse.json({ error: msg }, { status: 502 });
+  }
 
   return NextResponse.json({ url: session.url });
 }
