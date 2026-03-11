@@ -65,7 +65,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         if (existing) {
           next = prev.map((i) =>
             i.variantId === variantId
-              ? { ...i, quantity: i.quantity + quantity }
+              ? { ...i, quantity: Math.min(i.quantity + quantity, 10) }
               : i
           );
         } else {
@@ -95,7 +95,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const next =
         qty <= 0
           ? prev.filter((i) => i.id !== id)
-          : prev.map((i) => (i.id === id ? { ...i, quantity: qty } : i));
+          : prev.map((i) => (i.id === id ? { ...i, quantity: Math.min(qty, 10) } : i));
       saveItems(next);
       return next;
     });

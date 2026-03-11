@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
+// Simple in-memory rate limiter (resets on cold start — sufficient for serverless)
+const checkoutRateLimit = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string, limit: number, windowMs: number): boolean {
+  const now = Date.now();
+  const entry = checkoutRateLimit.get(ip);
+  if (!entry || now > entry.resetAt) {
+    checkoutRateLimit.set(ip, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+  if (entry.count >= limit) return true;
+  entry.count++;
+  return false;
+}
+
 // Server-side authoritative pricing — never trust client price
 const PRODUCT_CATALOG: Record<string, { name: string; price: number }> = {
   "diffuser-white": { name: "Velour Cloud™ Mini USB Diffuser — White", price: 24.99 },
@@ -22,6 +37,11 @@ export async function POST(req: NextRequest) {
   const secretKey = process.env.STRIPE_SECRET_KEY;
   if (!secretKey) {
     return NextResponse.json({ url: null, error: "Stripe not configured" });
+  }
+
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (isRateLimited(ip, 5, 60_000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
   const origin = req.headers.get("origin") || "";

@@ -2,6 +2,21 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 
+// Simple in-memory rate limiter (resets on cold start — sufficient for serverless)
+const subscribeRateLimit = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string, limit: number, windowMs: number): boolean {
+  const now = Date.now();
+  const entry = subscribeRateLimit.get(ip);
+  if (!entry || now > entry.resetAt) {
+    subscribeRateLimit.set(ip, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+  if (entry.count >= limit) return true;
+  entry.count++;
+  return false;
+}
+
 const dataFile = path.join(process.cwd(), "data", "subscribers.json");
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
 const MAX_SUBSCRIBERS = 10_000;
@@ -13,6 +28,11 @@ const ALLOWED_ORIGINS = [
 ];
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (isRateLimited(ip, 3, 60_000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const origin = req.headers.get("origin") || "";
   if (!ALLOWED_ORIGINS.includes(origin)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
