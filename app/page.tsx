@@ -8,7 +8,7 @@ import EmailCapture from "@/components/EmailCapture";
 export const metadata: Metadata = {
   title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
   description:
-    "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
+    "USB-powered auto-spray fragrance diffuser. Refillable pod, 4 spray intervals, wall-mount or desktop. Set it once — your space stays fresh. 24.99 CAD free shipping.",
 };
 
 const reviews = [
@@ -53,15 +53,15 @@ const steps = [
   },
   {
     number: "02",
-    title: "Set Your Interval",
+    title: "Choose Your Interval",
     description:
-      "Choose from 6 spray speeds — from every 10 minutes to continuous. Wall-mount it or set it on a surface. The diffuser does the rest.",
+      "Press the button to cycle through 4 spray speeds — every 15, 23, 30, or 45 minutes. Wall-mount it or set it on a surface. The diffuser does the rest.",
   },
   {
     number: "03",
     title: "Enjoy the Atmosphere",
     description:
-      "Your space fills with a warm, ambient scent on a perfect schedule. Recharge via USB-C when needed and keep going.",
+      "Your space fills with fragrance on a perfect schedule. Just leave it plugged in and let it run.",
   },
 ];
 
@@ -81,11 +81,11 @@ export default function HomePage() {
               Your Room. Reimagined.
             </h1>
             <p className="text-base md:text-lg text-plum/70 leading-relaxed max-w-xl mb-10">
-              A rechargeable automatic fragrance diffuser that scents your space
+              A USB-powered automatic fragrance diffuser that fills your room
               on your schedule. Refillable, wall-mountable, effortless.
             </p>
             <Link
-              href="/products/rain-cloud-diffuser"
+              href="/products/aroma-diffuser"
               className="inline-flex items-center gap-2 bg-plum text-cream px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-plum/90 transition-colors"
             >
               Refresh My Space

@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
   params.append("payment_method_types[]", "card");
   params.append("customer_creation", "always");
   params.append("success_url", `${siteUrl}/order-success?session_id={CHECKOUT_SESSION_ID}`);
-  params.append("cancel_url", `${siteUrl}/products/rain-cloud-diffuser`);
+  params.append("cancel_url", `${siteUrl}/products/aroma-diffuser`);
   params.append("shipping_address_collection[allowed_countries][]", "CA");
   params.append("shipping_address_collection[allowed_countries][]", "US");
   params.append("shipping_address_collection[allowed_countries][]", "GB");

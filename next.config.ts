@@ -31,6 +31,15 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/products/rain-cloud-diffuser",
+        destination: "/products/aroma-diffuser",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

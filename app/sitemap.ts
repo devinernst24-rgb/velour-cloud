@@ -6,7 +6,7 @@ const BASE_URL =
 
 const routes = [
   "/",
-  "/products/rain-cloud-diffuser",
+  "/products/aroma-diffuser",
   "/about",
   "/faq",
   "/shipping",

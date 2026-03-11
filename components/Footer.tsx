@@ -52,10 +52,10 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/products/rain-cloud-diffuser"
+                  href="/products/aroma-diffuser"
                   className="hover:text-cream transition-colors"
                 >
-                  Rain Cloud Diffuser
+                  Aroma Diffuser
                 </Link>
               </li>
               <li>
