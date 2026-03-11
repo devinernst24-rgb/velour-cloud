@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://velourcloud.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://velourcloud.com").trim();
   const itemsSummary = items
     .map((i: { variantId: string; quantity: number }) =>
       `${PRODUCT_CATALOG[i.variantId]?.name} x${i.quantity}`
