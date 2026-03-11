@@ -6,56 +6,57 @@ import FAQAccordion from "@/components/FAQAccordion";
 export const metadata: Metadata = {
   title: "Velour Cloud™ Aroma Diffuser — 24.99 CAD | Velour Cloud",
   description:
-    "USB-powered automatic spray diffuser. Fill the refillable pod, plug in, press the button — it handles the rest. 4 spray speeds. Wall-mount or desktop. 24.99 CAD free shipping.",
+    "Wireless rechargeable automatic spray diffuser. Fill the refillable pod, press the button — it handles the rest. 4 spray speeds. Wall-mount or desktop. 24.99 CAD free shipping.",
 };
 
 const features = [
   {
-    icon: "🌫",
-    title: "Auto-Spray on Timed Intervals",
+    icon: "🔋",
+    title: "Wireless & USB Rechargeable",
     description:
-      "4 speeds from every 15 to every 45 minutes. Each burst sprays for 5 seconds, then waits — consistent fragrance on your schedule.",
+      "Built-in rechargeable battery lets you use it anywhere, no constant plug required.",
   },
   {
-    icon: "🔌",
-    title: "USB-A Powered",
+    icon: "🌫",
+    title: "4 Timed Spray Modes",
     description:
-      "Plug in and go. No charging, no batteries — just plug it into any USB-A port or adapter and it's ready.",
+      "Choose intervals of 15, 23, 30, or 45 minutes for consistent, automatic fragrance.",
   },
   {
     icon: "💧",
-    title: "Refillable Pod",
+    title: "Refillable Fragrance Pod",
     description:
-      "Fill with water and add a few drops of your favourite essential oil or fragrance. Snap it in and you're set.",
+      "Simply add water and your favourite fragrance for a personalized scent experience.",
   },
   {
-    icon: "🌙",
-    title: "Ambient Light",
-    description:
-      "Built-in glow adds a soft, ambient atmosphere. Toggle it on or off with a 3-second hold of the button.",
-  },
-  {
-    icon: "🧲",
+    icon: "🧱",
     title: "Wall-Mount or Desktop",
     description:
-      "Includes wall-mount hardware so you can install it in any room, or simply set it on any surface.",
+      "Sleek design works mounted on the wall or placed on any flat surface.",
+  },
+  {
+    icon: "✨",
+    title: "Soft Ambient LED Glow",
+    description:
+      "Subtle built-in lighting adds a modern touch to any space.",
   },
   {
     icon: "🎛",
-    title: "4 Spray Speeds",
+    title: "Simple One-Touch Controls",
     description:
-      "Choose your interval: every 15, 23, 30, or 45 minutes. Short press to power on/off, long press (3s) to toggle the light.",
+      "Short press to power on/off, long press (3 seconds) to toggle the ambient light.",
   },
 ];
 
 const specs = [
-  ["Power", "USB-A (must stay plugged in)"],
-  ["Spray Intervals", "15 / 23 / 30 / 45 minutes"],
-  ["Spray Duration", "5 seconds per burst"],
-  ["Mounting", "Wall-mount or desktop"],
-  ["Pod", "Refillable water + fragrance"],
-  ["Ambient Light", "Yes (long press 3s to toggle)"],
-  ["Controls", "Short press: on/off — Long press 3s: light"],
+  ["Power", "Built-in rechargeable battery"],
+  ["Spray Intervals", "15, 23, 30, or 45 minutes"],
+  ["Spray Duration", "5 seconds per cycle"],
+  ["Mounting", "Wall-mount or desktop placement"],
+  ["Pod", "Refillable water + fragrance pod"],
+  ["Ambient Light", "Soft LED glow (toggle on/off)"],
+  ["Controls", "Short press: power on/off | Long press (3 sec): toggle light"],
+  ["Charging", "USB rechargeable"],
 ];
 
 const reviews = [
@@ -75,7 +76,7 @@ const reviews = [
     name: "Priya K.",
     location: "Calgary, AB",
     quote:
-      "Mounted it beside my front door and it runs on the 15-minute setting all day. The USB plug is so convenient — just leave it plugged in and it runs all day. Love this thing.",
+      "Mounted it beside my front door and it runs on the 15-minute setting all day. The rechargeable battery is so convenient — just charge it and it runs all day. Love this thing.",
   },
   {
     name: "Natalie B.",
@@ -95,7 +96,7 @@ const faqItems = [
   {
     question: "Does it need to stay plugged in?",
     answer:
-      "Yes — the Velour Cloud Aroma Diffuser is USB-A powered and must stay plugged in during use. There is no internal battery. Plug it into any USB-A port, wall adapter, or power bank.",
+      "No — it runs on a built-in rechargeable battery. Charge it via USB and use it anywhere.",
   },
   {
     question: "What are the 4 spray speeds?",
@@ -120,7 +121,7 @@ const faqItems = [
   {
     question: "What's included in the box?",
     answer:
-      "Velour Cloud™ Aroma Diffuser, USB-A cable, wall-mount hardware, refillable fragrance pod, and user guide.",
+      "Velour Cloud™ Aroma Diffuser, USB charging cable, wall-mount hardware, refillable fragrance pod, and user guide.",
   },
 ];
 
@@ -129,7 +130,7 @@ const jsonLd = {
   "@type": "Product",
   name: "Velour Cloud™ Aroma Diffuser",
   description:
-    "USB-powered automatic spray diffuser. Fill the refillable pod with water and your favourite fragrance, plug in, press the button — it handles the rest.",
+    "Wireless rechargeable automatic spray diffuser. Fill the refillable pod with water and your favourite fragrance, press the button — it handles the rest.",
   brand: {
     "@type": "Brand",
     name: "Velour Cloud",
@@ -207,10 +208,10 @@ export default function ProductPage() {
             </div>
 
             <p className="text-sm text-plum/70 leading-relaxed mb-8">
-              USB-powered automatic spray diffuser. Fill the refillable pod with
-              water and your favourite fragrance, plug in, press the button — it
-              handles the rest. Fills your room with fragrance on a timed
-              interval so you never have to think about it.
+              The Velour Cloud™ is a wireless, USB rechargeable automatic aroma
+              diffuser with a refillable pod and 4 timed spray speeds. Designed
+              for wall-mount or desktop use, it delivers effortless fragrance
+              with a soft ambient glow — no constant plug required.
             </p>
 
             <AddToCart />
@@ -293,19 +294,19 @@ export default function ProductPage() {
                 number: "01",
                 title: "Fill the Pod",
                 description:
-                  "Fill the refillable water pod with water and add a few drops of your favourite fragrance. Snap it in place — no mess, no fuss.",
+                  "Fill the pod with water and your favourite fragrance.",
               },
               {
                 number: "02",
-                title: "Plug in and Choose Your Speed",
+                title: "Choose Your Spray Speed",
                 description:
-                  "Plug into any USB-A port, press the button to power on, and press again to cycle through the 4 spray intervals — 15, 23, 30, or 45 minutes. Wall-mount it or set it on a surface.",
+                  "Choose your spray speed (15, 23, 30, or 45 minute intervals).",
               },
               {
                 number: "03",
-                title: "Set and Forget",
+                title: "Set and Enjoy",
                 description:
-                  "Your space fills with fragrance on a perfect schedule. The diffuser handles the rest — no timers, no reminders.",
+                  "Set it and enjoy — it handles the rest automatically.",
               },
             ].map((step) => (
               <div key={step.number} className="flex flex-col gap-4">
@@ -376,7 +377,7 @@ export default function ProductPage() {
           <div className="rounded-2xl border border-lilac/30 bg-white/40 overflow-hidden">
             {[
               "1× Velour Cloud™ Aroma Diffuser",
-              "1× USB-A cable",
+              "1× USB charging cable",
               "1× Wall-mount hardware",
               "1× Refillable fragrance pod",
               "1× User guide",
@@ -410,15 +411,14 @@ export default function ProductPage() {
             </p>
             <p>
               Fill the refillable water + fragrance pod with your scent of
-              choice, plug in via USB-A, and press the button to choose one of
-              4 spray intervals. Every 15, 23, 30, or 45 minutes, it sprays a
-              5-second burst — then waits. No timers, no reminders, no manual
-              spraying.
+              choice and press the button to choose one of 4 spray intervals.
+              Every 15, 23, 30, or 45 minutes, it sprays a 5-second burst —
+              then waits. No timers, no reminders, no manual spraying.
             </p>
             <p>
               Wall-mount it in your entryway, living room, or bedroom — or set
               it on any surface. The built-in ambient light adds a soft glow you
-              can toggle with a long press. Just plug in and let it do its
+              can toggle with a long press. Charge it via USB and let it do its
               thing.
             </p>
             <p className="font-medium text-plum">
