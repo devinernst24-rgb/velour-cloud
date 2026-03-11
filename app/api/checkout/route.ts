@@ -20,7 +20,6 @@ const PRODUCT_CATALOG: Record<string, { name: string; price: number }> = {
   "diffuser":           { name: "Velour Cloud™ Aroma Diffuser",   price: 23.99 },
   "cartridge-lavender": { name: "Lavender Refill Cartridge",       price: 11.99 },
   "cartridge-rose":     { name: "Rose Refill Cartridge",           price: 11.99 },
-  "cartridge-bundle":   { name: "Lavender + Rose Bundle",          price: 19.99 },
 };
 
 const ALLOWED_ORIGINS = [

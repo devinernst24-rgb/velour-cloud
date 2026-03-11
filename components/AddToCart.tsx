@@ -4,23 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 
 const DEVICE_PRICE = 23.99;
+const COMPARE_AT = 39.99;
 
-const scentOptions = [
-  { id: "lavender", label: "Lavender", cartridgeId: "cartridge-lavender" as const },
-  { id: "rose", label: "Rose", cartridgeId: "cartridge-rose" as const },
-  { id: "none", label: "No Scent", cartridgeId: null },
-];
-
-const upsells = [
-  { label: "Lavender Refill Cartridge", price: 11.99, id: "cartridge-lavender" },
+const cartridgeOptions = [
   { label: "Rose Refill Cartridge", price: 11.99, id: "cartridge-rose" },
-  { label: "Lavender + Rose Bundle", price: 19.99, id: "cartridge-bundle" },
+  { label: "Lavender Refill Cartridge", price: 11.99, id: "cartridge-lavender" },
 ];
 
 export default function AddToCart() {
   const { addItem, isLoading } = useCart();
-  const [selectedScent, setSelectedScent] = useState(scentOptions[0]);
-  const [selectedUpsell, setSelectedUpsell] = useState<string | null>(null);
+  const [selectedCartridge, setSelectedCartridge] = useState<string | null>(null);
   const [viewers, setViewers] = useState(47);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const addToCartBtnRef = useRef<HTMLButtonElement>(null);
@@ -42,26 +35,14 @@ export default function AddToCart() {
 
   function handleAddToCart() {
     addItem("diffuser", 1, "Velour Cloud™ Aroma Diffuser", DEVICE_PRICE);
-    if (selectedScent.cartridgeId) {
-      const cartridge = upsells.find((u) => u.id === selectedScent.cartridgeId);
-      if (cartridge) {
-        addItem(cartridge.id, 1, cartridge.label, cartridge.price);
-      }
-    }
-    const upsell = upsells.find((u) => u.id === selectedUpsell);
-    if (upsell) {
-      addItem(upsell.id, 1, upsell.label, upsell.price);
+    const cartridge = cartridgeOptions.find((c) => c.id === selectedCartridge);
+    if (cartridge) {
+      addItem(cartridge.id, 1, cartridge.label, cartridge.price);
     }
   }
 
-  const scentCartridge = selectedScent.cartridgeId
-    ? upsells.find((u) => u.id === selectedScent.cartridgeId)
-    : null;
-  const selectedUpsellItem = upsells.find((u) => u.id === selectedUpsell);
-  const total =
-    DEVICE_PRICE +
-    (scentCartridge?.price ?? 0) +
-    (selectedUpsellItem?.price ?? 0);
+  const cartridgeItem = cartridgeOptions.find((c) => c.id === selectedCartridge);
+  const total = DEVICE_PRICE + (cartridgeItem?.price ?? 0);
 
   return (
     <>
@@ -71,70 +52,57 @@ export default function AddToCart() {
           🔥 {viewers} people are viewing this right now
         </p>
 
-        {/* Scent selector */}
+        {/* Device section */}
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-3">
-            Included Scent
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {scentOptions.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setSelectedScent(s)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
-                  selectedScent.id === s.id
-                    ? "bg-plum text-cream border-plum"
-                    : "bg-transparent text-plum border-plum/30 hover:border-plum/60"
-                }`}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Upsells */}
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-2">
-            Add a Refill Pack
-          </p>
-          <p className="text-xs text-plum/60 mb-3 leading-relaxed">
-            Keep your space smelling fresh on repeat. Each cartridge comes pre-filled with our
-            signature scent — and you can refill it anytime with your own favourite fragrance.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {upsells.map((u) => (
-              <button
-                key={u.id}
-                onClick={() =>
-                  setSelectedUpsell(selectedUpsell === u.id ? null : u.id)
-                }
-                className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
-                  selectedUpsell === u.id
-                    ? "bg-lilac text-plum border-lilac"
-                    : "bg-transparent text-plum border-plum/30 hover:border-lilac"
-                }`}
-              >
-                {u.label} +${u.price.toFixed(2)}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Price + Add to Cart */}
-        <div className="pt-2">
-          <div className="flex items-center gap-3 mb-4">
+          <h2
+            className="text-2xl font-semibold text-plum mb-1"
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+          >
+            Velour Cloud™ Aroma Diffuser
+          </h2>
+          <div className="flex items-center gap-3 mb-1">
             <span className="text-2xl font-bold text-plum">
               ${total.toFixed(2)} USD
             </span>
             <span className="text-base text-plum/40 line-through">
-              $39.99
+              ${COMPARE_AT.toFixed(2)}
             </span>
             <span className="bg-plum text-cream text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide">
               Sale
             </span>
           </div>
+          <p className="text-xs text-slate-mist">Includes Rose Refill Cartridge</p>
+        </div>
 
+        {/* Replacement cartridges upsell */}
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-2">
+            Add a Replacement Cartridge
+          </p>
+          <p className="text-xs text-plum/60 mb-3 leading-relaxed">
+            Keep your space smelling fresh. Each cartridge comes pre-filled and is fully refillable.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {cartridgeOptions.map((c) => (
+              <button
+                key={c.id}
+                onClick={() =>
+                  setSelectedCartridge(selectedCartridge === c.id ? null : c.id)
+                }
+                className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
+                  selectedCartridge === c.id
+                    ? "bg-lilac text-plum border-lilac"
+                    : "bg-transparent text-plum border-plum/30 hover:border-lilac"
+                }`}
+              >
+                {c.label} +${c.price.toFixed(2)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Add to Cart */}
+        <div className="pt-2">
           <button
             ref={addToCartBtnRef}
             onClick={handleAddToCart}
