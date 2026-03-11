@@ -32,29 +32,6 @@ const ALLOWED_ORIGINS = [
   "http://localhost:3000",
 ];
 
-// Build URL-encoded form body for Stripe API (no SDK, native fetch)
-function encodeStripeBody(params: Record<string, unknown>, prefix = ""): string {
-  const parts: string[] = [];
-  for (const [k, v] of Object.entries(params)) {
-    const key = prefix ? `${prefix}[${k}]` : k;
-    if (v === null || v === undefined) continue;
-    if (typeof v === "object" && !Array.isArray(v)) {
-      parts.push(encodeStripeBody(v as Record<string, unknown>, key));
-    } else if (Array.isArray(v)) {
-      v.forEach((item, i) => {
-        if (typeof item === "object" && item !== null) {
-          parts.push(encodeStripeBody(item as Record<string, unknown>, `${key}[${i}]`));
-        } else {
-          parts.push(`${encodeURIComponent(`${key}[${i}]`)}=${encodeURIComponent(String(item))}`);
-        }
-      });
-    } else {
-      parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(v))}`);
-    }
-  }
-  return parts.join("&");
-}
-
 export async function POST(req: NextRequest) {
   const secretKey = process.env.STRIPE_SECRET_KEY;
   if (!secretKey) {
@@ -78,23 +55,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid cart" }, { status: 400 });
   }
 
-  const lineItems: Array<{
-    price_data: { currency: string; product_data: { name: string }; unit_amount: number };
-    quantity: number;
-  }> = [];
-
+  // Validate all items first
+  const validatedItems: Array<{ name: string; unitAmount: number; quantity: number }> = [];
   for (const item of items) {
     const product = PRODUCT_CATALOG[item.variantId as string];
     const quantity = Number(item.quantity);
     if (!product || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
       return NextResponse.json({ error: "Invalid item" }, { status: 400 });
     }
-    lineItems.push({
-      price_data: {
-        currency: "cad",
-        product_data: { name: product.name },
-        unit_amount: Math.round(product.price * 100),
-      },
+    validatedItems.push({
+      name: product.name,
+      unitAmount: Math.round(product.price * 100),
       quantity,
     });
   }
@@ -106,46 +77,51 @@ export async function POST(req: NextRequest) {
     )
     .join(", ");
 
-  const stripeParams: Record<string, unknown> = {
-    payment_method_types: ["card"],
-    mode: "payment",
-    currency: "cad",
-    line_items: lineItems,
-    shipping_address_collection: { allowed_countries: ["CA", "US", "GB", "AU", "NZ"] },
-    phone_number_collection: { enabled: true },
-    customer_creation: "always",
-    shipping_options: [
-      {
-        shipping_rate_data: {
-          type: "fixed_amount",
-          fixed_amount: { amount: 0, currency: "cad" },
-          display_name: "Free shipping",
-          delivery_estimate: {
-            minimum: { unit: "business_day", value: 7 },
-            maximum: { unit: "business_day", value: 14 },
-          },
-        },
-      },
-      {
-        shipping_rate_data: {
-          type: "fixed_amount",
-          fixed_amount: { amount: 999, currency: "cad" },
-          display_name: "Express shipping",
-          delivery_estimate: {
-            minimum: { unit: "business_day", value: 3 },
-            maximum: { unit: "business_day", value: 7 },
-          },
-        },
-      },
-    ],
-    "metadata[source]": "velourcloud.com",
-    "metadata[items]": itemsSummary,
-    success_url: `${siteUrl}/order-success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${siteUrl}/products/rain-cloud-diffuser`,
-  };
+  // Build form body using URLSearchParams (safe, standard encoding)
+  const params = new URLSearchParams();
+  params.append("mode", "payment");
+  params.append("currency", "cad");
+  params.append("payment_method_types[]", "card");
+  params.append("customer_creation", "always");
+  params.append("success_url", `${siteUrl}/order-success?session_id={CHECKOUT_SESSION_ID}`);
+  params.append("cancel_url", `${siteUrl}/products/rain-cloud-diffuser`);
+  params.append("shipping_address_collection[allowed_countries][]", "CA");
+  params.append("shipping_address_collection[allowed_countries][]", "US");
+  params.append("shipping_address_collection[allowed_countries][]", "GB");
+  params.append("shipping_address_collection[allowed_countries][]", "AU");
+  params.append("phone_number_collection[enabled]", "true");
+  params.append("metadata[source]", "velourcloud.com");
+  params.append("metadata[items]", itemsSummary);
+
+  // Free shipping option
+  params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
+  params.append("shipping_options[0][shipping_rate_data][display_name]", "Free shipping");
+  params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", "0");
+  params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "cad");
+  params.append("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][unit]", "business_day");
+  params.append("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][value]", "7");
+  params.append("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][unit]", "business_day");
+  params.append("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][value]", "14");
+
+  // Express shipping option
+  params.append("shipping_options[1][shipping_rate_data][type]", "fixed_amount");
+  params.append("shipping_options[1][shipping_rate_data][display_name]", "Express shipping");
+  params.append("shipping_options[1][shipping_rate_data][fixed_amount][amount]", "999");
+  params.append("shipping_options[1][shipping_rate_data][fixed_amount][currency]", "cad");
+  params.append("shipping_options[1][shipping_rate_data][delivery_estimate][minimum][unit]", "business_day");
+  params.append("shipping_options[1][shipping_rate_data][delivery_estimate][minimum][value]", "3");
+  params.append("shipping_options[1][shipping_rate_data][delivery_estimate][maximum][unit]", "business_day");
+  params.append("shipping_options[1][shipping_rate_data][delivery_estimate][maximum][value]", "7");
+
+  // Line items
+  validatedItems.forEach((item, i) => {
+    params.append(`line_items[${i}][price_data][currency]`, "cad");
+    params.append(`line_items[${i}][price_data][product_data][name]`, item.name);
+    params.append(`line_items[${i}][price_data][unit_amount]`, String(item.unitAmount));
+    params.append(`line_items[${i}][quantity]`, String(item.quantity));
+  });
 
   try {
-    const encoded = encodeStripeBody(stripeParams);
     const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
       headers: {
@@ -153,7 +129,7 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/x-www-form-urlencoded",
         "Stripe-Version": "2023-10-16",
       },
-      body: encoded,
+      body: params.toString(),
     });
 
     const data = await res.json() as { url?: string; error?: { message: string } };
