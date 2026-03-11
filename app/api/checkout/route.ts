@@ -119,8 +119,13 @@ export async function POST(req: NextRequest) {
     cancel_url: `${siteUrl}/products/rain-cloud-diffuser`,
     });
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : "Stripe error";
-    return NextResponse.json({ error: msg }, { status: 502 });
+    const e = err as Record<string, unknown>;
+    return NextResponse.json({
+      error: e?.message ?? "Stripe error",
+      type: e?.type ?? null,
+      code: e?.code ?? null,
+      statusCode: e?.statusCode ?? null,
+    }, { status: 502 });
   }
 
   return NextResponse.json({ url: session.url });
