@@ -17,13 +17,10 @@ function isRateLimited(ip: string, limit: number, windowMs: number): boolean {
 
 // Server-side authoritative pricing — never trust client price
 const PRODUCT_CATALOG: Record<string, { name: string; price: number }> = {
-  "diffuser-white": { name: "Velour Cloud™ Smart Scent Diffuser — White", price: 24.99 },
-  "diffuser-pink":  { name: "Velour Cloud™ Smart Scent Diffuser — Pink",  price: 24.99 },
-  "diffuser-blue":  { name: "Velour Cloud™ Smart Scent Diffuser — Blue",  price: 24.99 },
-  "diffuser-green": { name: "Velour Cloud™ Smart Scent Diffuser — Green", price: 24.99 },
-  "diffuser-gray":  { name: "Velour Cloud™ Smart Scent Diffuser — Gray",  price: 24.99 },
-  "upsell-3oil":    { name: "3-Pack Fragrance Refill Set",                 price: 14.99 },
-  "upsell-5oil":    { name: "6-Pack Fragrance Refill Set",                 price: 24.99 },
+  "diffuser":           { name: "Velour Cloud™ Aroma Diffuser",   price: 23.99 },
+  "cartridge-lavender": { name: "Lavender Refill Cartridge",       price: 11.99 },
+  "cartridge-rose":     { name: "Rose Refill Cartridge",           price: 11.99 },
+  "cartridge-bundle":   { name: "Lavender + Rose Bundle",          price: 19.99 },
 };
 
 const ALLOWED_ORIGINS = [
@@ -80,7 +77,7 @@ export async function POST(req: NextRequest) {
   // Build form body using URLSearchParams (safe, standard encoding)
   const params = new URLSearchParams();
   params.append("mode", "payment");
-  params.append("currency", "cad");
+  params.append("currency", "usd");
   params.append("payment_method_types[]", "card");
   params.append("customer_creation", "always");
   params.append("success_url", `${siteUrl}/order-success?session_id={CHECKOUT_SESSION_ID}`);
@@ -97,7 +94,7 @@ export async function POST(req: NextRequest) {
   params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
   params.append("shipping_options[0][shipping_rate_data][display_name]", "Free shipping");
   params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", "0");
-  params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "cad");
+  params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "usd");
   params.append("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][unit]", "business_day");
   params.append("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][value]", "7");
   params.append("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][unit]", "business_day");
@@ -107,7 +104,7 @@ export async function POST(req: NextRequest) {
   params.append("shipping_options[1][shipping_rate_data][type]", "fixed_amount");
   params.append("shipping_options[1][shipping_rate_data][display_name]", "Express shipping");
   params.append("shipping_options[1][shipping_rate_data][fixed_amount][amount]", "999");
-  params.append("shipping_options[1][shipping_rate_data][fixed_amount][currency]", "cad");
+  params.append("shipping_options[1][shipping_rate_data][fixed_amount][currency]", "usd");
   params.append("shipping_options[1][shipping_rate_data][delivery_estimate][minimum][unit]", "business_day");
   params.append("shipping_options[1][shipping_rate_data][delivery_estimate][minimum][value]", "3");
   params.append("shipping_options[1][shipping_rate_data][delivery_estimate][maximum][unit]", "business_day");
@@ -115,7 +112,7 @@ export async function POST(req: NextRequest) {
 
   // Line items
   validatedItems.forEach((item, i) => {
-    params.append(`line_items[${i}][price_data][currency]`, "cad");
+    params.append(`line_items[${i}][price_data][currency]`, "usd");
     params.append(`line_items[${i}][price_data][product_data][name]`, item.name);
     params.append(`line_items[${i}][price_data][unit_amount]`, String(item.unitAmount));
     params.append(`line_items[${i}][quantity]`, String(item.quantity));

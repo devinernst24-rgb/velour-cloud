@@ -26,20 +26,20 @@ const BASE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
+    default: "Velour Cloud Aroma Diffuser | $23.99 USD",
     template: "%s | Velour Cloud",
   },
   description:
-    "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
+    "Wireless aroma diffuser with refillable scent cartridges. Wall-mount or desktop. Fills your room with soft, consistent fragrance. $23.99 USD free shipping.",
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
     type: "website",
     siteName: "Velour Cloud",
-    title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
+    title: "Velour Cloud Aroma Diffuser | $23.99 USD",
     description:
-      "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
+      "Wireless aroma diffuser with refillable scent cartridges. Wall-mount or desktop. Fills your room with soft, consistent fragrance. $23.99 USD free shipping.",
     url: BASE_URL,
     images: [
       {
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
+    title: "Velour Cloud Aroma Diffuser | $23.99 USD",
     description:
-      "Rechargeable auto-spray fragrance diffuser. Wall-mount or desktop. Covers 50m2. Set it once - your space stays fresh. 24.99 CAD free shipping.",
+      "Wireless aroma diffuser with refillable scent cartridges. Wall-mount or desktop. Fills your room with soft, consistent fragrance. $23.99 USD free shipping.",
     images: ["/images/product-hero.png"],
   },
 };
@@ -74,7 +74,7 @@ export default function RootLayout({
           className="w-full text-center py-2 px-4 text-xs font-medium tracking-wide"
           style={{ backgroundColor: "#2D2A35", color: "#EDE6DC" }}
         >
-          Limited Time: 40% Off - Now 24.99 CAD (Was 39.99) Free Shipping to Canada
+          Limited Time: $23.99 USD — Free Shipping
         </div>
         <CartProvider>
           <Header />

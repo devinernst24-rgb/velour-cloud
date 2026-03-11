@@ -6,9 +6,9 @@ import TrustBadges from "@/components/TrustBadges";
 import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Velour Cloud Auto Fragrance Diffuser | 24.99 CAD",
+  title: "Velour Cloud Aroma Diffuser | $23.99 USD",
   description:
-    "USB-powered auto-spray fragrance diffuser. Refillable pod, 4 spray intervals, wall-mount or desktop. Set it once — your space stays fresh. 24.99 CAD free shipping.",
+    "Wireless aroma diffuser with refillable scent cartridges. 4 spray intervals, wall-mount or desktop. Set it once — your space stays fresh. $23.99 USD free shipping.",
 };
 
 const reviews = [

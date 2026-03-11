@@ -4,9 +4,9 @@ import AddToCart from "@/components/AddToCart";
 import FAQAccordion from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
-  title: "Velour Cloud™ Aroma Diffuser — 24.99 CAD | Velour Cloud",
+  title: "Velour Cloud™ Aroma Diffuser — $23.99 USD | Velour Cloud",
   description:
-    "Wireless rechargeable automatic spray diffuser. Fill the refillable pod, press the button — it handles the rest. 4 spray speeds. Wall-mount or desktop. 24.99 CAD free shipping.",
+    "A sleek, wireless aroma diffuser designed for modern spaces. Runs on refillable scent cartridges and fills your room with a soft, consistent fragrance — no cords, no clutter, no complicated setup.",
 };
 
 const features = [
@@ -109,9 +109,9 @@ const faqItems = [
       "Hold the button for 3 seconds to toggle the ambient light on or off. A short press turns the diffuser on or off.",
   },
   {
-    question: "What goes in the pod?",
+    question: "How do the scent cartridges work?",
     answer:
-      "Fill the refillable pod with water, then add a few drops of your favourite essential oil or fragrance. Any water-soluble fragrance works — you're not limited to our refills.",
+      "Each cartridge comes pre-filled with our signature scent. Snap it into the diffuser and it's ready to go. When the scent runs low, you can refill it with your own favourite fragrance — any water-soluble essential oil or fragrance works.",
   },
   {
     question: "Can I wall-mount it?",
@@ -121,7 +121,7 @@ const faqItems = [
   {
     question: "What's included in the box?",
     answer:
-      "Velour Cloud™ Aroma Diffuser, USB charging cable, wall-mount hardware, refillable fragrance pod, and user guide.",
+      "Velour Cloud™ Aroma Diffuser, USB charging cable, wall-mount hardware, scent cartridge (based on your selection), and user guide.",
   },
 ];
 
@@ -138,8 +138,8 @@ const jsonLd = {
   image: "https://velourcloud.com/images/product-hero.png",
   offers: {
     "@type": "Offer",
-    priceCurrency: "CAD",
-    price: "24.99",
+    priceCurrency: "USD",
+    price: "23.99",
     availability: "https://schema.org/InStock",
     url: "https://velourcloud.com/products/aroma-diffuser",
   },
@@ -208,10 +208,9 @@ export default function ProductPage() {
             </div>
 
             <p className="text-sm text-plum/70 leading-relaxed mb-8">
-              The Velour Cloud™ is a wireless, USB rechargeable automatic aroma
-              diffuser with a refillable pod and 4 timed spray speeds. Designed
-              for wall-mount or desktop use, it delivers effortless fragrance
-              with a soft ambient glow — no constant plug required.
+              A sleek, wireless aroma diffuser designed for modern spaces. Runs on refillable scent
+              cartridges and fills your room with a soft, consistent fragrance — no cords, no clutter,
+              no complicated setup.
             </p>
 
             <AddToCart />
@@ -330,36 +329,30 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Available Fragrances */}
+        {/* Scent Cartridges */}
         <div className="mt-20">
           <h2
             style={{ fontFamily: "var(--font-cormorant), serif" }}
             className="text-3xl font-semibold text-plum mb-8"
           >
-            Available Fragrances
+            Scent Cartridges
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
             {[
-              { code: "A", name: "Lavender & Bergamot", notes: "Cedar & amber base" },
-              { code: "B", name: "Bluebell & Lily of the Valley", notes: "Amber base" },
-              { code: "C", name: "Fresh Floral", notes: "Tuberose, water lily & amber" },
-              { code: "D", name: "Peach & Apple", notes: "Sandalwood & musk base" },
-              { code: "E", name: "Eucalyptus & Bamboo", notes: "Cedar & ambergris base" },
-              { code: "F", name: "Gardenia & Pear", notes: "Bergamot & white rose base" },
-            ].map(({ code, name, notes }) => (
+              { name: "Lavender Refill Cartridge", notes: "Soft floral · calm & grounding", price: "$11.99 USD" },
+              { name: "Rose Refill Cartridge", notes: "Romantic floral · warm & uplifting", price: "$11.99 USD" },
+            ].map(({ name, notes, price }) => (
               <div
-                key={code}
+                key={name}
                 className="flex items-start gap-4 rounded-2xl border border-lilac/30 bg-white/40 px-5 py-4"
               >
-                <span
-                  style={{ fontFamily: "var(--font-cormorant), serif" }}
-                  className="w-8 h-8 rounded-full bg-lilac/30 flex items-center justify-center shrink-0 text-base font-semibold text-plum mt-0.5"
-                >
-                  {code}
+                <span className="w-8 h-8 rounded-full bg-lilac/30 flex items-center justify-center shrink-0 text-base mt-0.5">
+                  🌸
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-plum">{name}</p>
                   <p className="text-xs text-plum/55 mt-0.5">{notes}</p>
+                  <p className="text-xs text-slate-mist mt-1 font-medium">{price}</p>
                 </div>
               </div>
             ))}
@@ -379,7 +372,7 @@ export default function ProductPage() {
               "1× Velour Cloud™ Aroma Diffuser",
               "1× USB charging cable",
               "1× Wall-mount hardware",
-              "1× Refillable fragrance pod",
+              "1× Scent cartridge (based on your selection)",
               "1× User guide",
             ].map((item, i) => (
               <div

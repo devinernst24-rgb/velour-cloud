@@ -3,30 +3,23 @@
 import { useState, useEffect, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 
-const variants = [
-  { name: "Velour Cloud™ Mini USB Diffuser — White", price: 24.99, variantId: "diffuser-white" },
-  { name: "Velour Cloud™ Mini USB Diffuser — Pink",  price: 24.99, variantId: "diffuser-pink" },
-  { name: "Velour Cloud™ Mini USB Diffuser — Blue",  price: 24.99, variantId: "diffuser-blue" },
-  { name: "Velour Cloud™ Mini USB Diffuser — Green", price: 24.99, variantId: "diffuser-green" },
-  { name: "Velour Cloud™ Mini USB Diffuser — Gray",  price: 24.99, variantId: "diffuser-gray" },
+const DEVICE_PRICE = 23.99;
+
+const scentOptions = [
+  { id: "lavender", label: "Lavender", cartridgeId: "cartridge-lavender" as const },
+  { id: "rose", label: "Rose", cartridgeId: "cartridge-rose" as const },
+  { id: "none", label: "No Scent", cartridgeId: null },
 ];
 
-const variantLabels: Record<string, string> = {
-  "diffuser-white": "White",
-  "diffuser-pink":  "Pink",
-  "diffuser-blue":  "Blue",
-  "diffuser-green": "Green",
-  "diffuser-gray":  "Gray",
-};
-
 const upsells = [
-  { label: "3-Pack Fragrance Refills", price: 14.99, id: "upsell-3oil" },
-  { label: "6-Pack Fragrance Refills", price: 24.99, id: "upsell-5oil" },
+  { label: "Lavender Refill Cartridge", price: 11.99, id: "cartridge-lavender" },
+  { label: "Rose Refill Cartridge", price: 11.99, id: "cartridge-rose" },
+  { label: "Lavender + Rose Bundle", price: 19.99, id: "cartridge-bundle" },
 ];
 
 export default function AddToCart() {
   const { addItem, isLoading } = useCart();
-  const [selectedVariant, setSelectedVariant] = useState(variants[0]);
+  const [selectedScent, setSelectedScent] = useState(scentOptions[0]);
   const [selectedUpsell, setSelectedUpsell] = useState<string | null>(null);
   const [viewers, setViewers] = useState(47);
   const [showStickyBar, setShowStickyBar] = useState(false);
@@ -47,24 +40,28 @@ export default function AddToCart() {
     return () => observer.disconnect();
   }, []);
 
-  async function handleAddToCart() {
-    addItem(
-      selectedVariant.variantId,
-      1,
-      selectedVariant.name,
-      selectedVariant.price
-    );
+  function handleAddToCart() {
+    addItem("diffuser", 1, "Velour Cloud™ Aroma Diffuser", DEVICE_PRICE);
+    if (selectedScent.cartridgeId) {
+      const cartridge = upsells.find((u) => u.id === selectedScent.cartridgeId);
+      if (cartridge) {
+        addItem(cartridge.id, 1, cartridge.label, cartridge.price);
+      }
+    }
     const upsell = upsells.find((u) => u.id === selectedUpsell);
     if (upsell) {
       addItem(upsell.id, 1, upsell.label, upsell.price);
     }
   }
 
+  const scentCartridge = selectedScent.cartridgeId
+    ? upsells.find((u) => u.id === selectedScent.cartridgeId)
+    : null;
+  const selectedUpsellItem = upsells.find((u) => u.id === selectedUpsell);
   const total =
-    selectedVariant.price +
-    (selectedUpsell
-      ? upsells.find((u) => u.id === selectedUpsell)?.price ?? 0
-      : 0);
+    DEVICE_PRICE +
+    (scentCartridge?.price ?? 0) +
+    (selectedUpsellItem?.price ?? 0);
 
   return (
     <>
@@ -74,23 +71,23 @@ export default function AddToCart() {
           🔥 {viewers} people are viewing this right now
         </p>
 
-        {/* Variant selector */}
+        {/* Scent selector */}
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-3">
-            Colour
+            Included Scent
           </p>
           <div className="flex flex-wrap gap-3">
-            {variants.map((v) => (
+            {scentOptions.map((s) => (
               <button
-                key={v.variantId}
-                onClick={() => setSelectedVariant(v)}
+                key={s.id}
+                onClick={() => setSelectedScent(s)}
                 className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
-                  selectedVariant.variantId === v.variantId
+                  selectedScent.id === s.id
                     ? "bg-plum text-cream border-plum"
                     : "bg-transparent text-plum border-plum/30 hover:border-plum/60"
                 }`}
               >
-                {variantLabels[v.variantId]} — ${v.price.toFixed(2)} CAD
+                {s.label}
               </button>
             ))}
           </div>
@@ -98,8 +95,12 @@ export default function AddToCart() {
 
         {/* Upsells */}
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-3">
-            Complete the ritual
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-2">
+            Add a Refill Pack
+          </p>
+          <p className="text-xs text-plum/60 mb-3 leading-relaxed">
+            Keep your space smelling fresh on repeat. Each cartridge comes pre-filled with our
+            signature scent — and you can refill it anytime with your own favourite fragrance.
           </p>
           <div className="flex flex-wrap gap-3">
             {upsells.map((u) => (
@@ -122,13 +123,12 @@ export default function AddToCart() {
 
         {/* Price + Add to Cart */}
         <div className="pt-2">
-          {/* Compare-at price */}
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl font-bold text-plum">
-              ${total.toFixed(2)} CAD
+              ${total.toFixed(2)} USD
             </span>
             <span className="text-base text-plum/40 line-through">
-              $39.99 CAD
+              $39.99
             </span>
             <span className="bg-plum text-cream text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide">
               Sale
@@ -144,12 +144,10 @@ export default function AddToCart() {
             {isLoading ? "Adding..." : "Add to Cart"}
           </button>
 
-          {/* Shipping disclosure */}
           <p className="text-xs text-slate-mist mt-3 text-center">
-            🇨🇦 Free shipping in Canada · Estimated delivery 7–14 business days
+            Free shipping worldwide · Estimated delivery 7–14 business days
           </p>
 
-          {/* CLOUD10 discount callout */}
           <p className="text-xs text-lilac mt-1.5 text-center font-medium">
             💜 First order? Use code <span className="text-plum font-semibold">CLOUD10</span> for 10% off
           </p>
@@ -165,10 +163,10 @@ export default function AddToCart() {
         <div className="flex items-center gap-3 px-4 py-3 safe-area-pb">
           <div className="flex-1 min-w-0">
             <p className="text-cream text-xs font-semibold truncate">
-              Mini USB Diffuser
+              Velour Cloud™ Aroma Diffuser
             </p>
             <p className="text-cream/60 text-xs">
-              ${selectedVariant.price.toFixed(2)} CAD
+              ${DEVICE_PRICE.toFixed(2)} USD
             </p>
           </div>
           <button
