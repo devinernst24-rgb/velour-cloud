@@ -24,7 +24,7 @@ const features = [
   },
   {
     icon: "💧",
-    title: "Refillable Fragrance Pod",
+    title: "Refillable Fragrance Cartridge",
     description:
       "Simply add water and your favourite fragrance for a personalized scent experience.",
   },
@@ -53,7 +53,7 @@ const specs = [
   ["Spray Intervals", "15, 23, 30, or 45 minutes"],
   ["Spray Duration", "5 seconds per cycle"],
   ["Mounting", "Wall-mount or desktop placement"],
-  ["Pod", "Refillable water + fragrance pod"],
+  ["Cartridge", "Refillable fragrance cartridge"],
   ["Ambient Light", "Soft LED glow (toggle on/off)"],
   ["Controls", "Short press: power on/off | Long press (3 sec): toggle light"],
   ["Charging", "USB rechargeable"],
@@ -130,7 +130,7 @@ const jsonLd = {
   "@type": "Product",
   name: "Velour Cloud™ Aroma Diffuser",
   description:
-    "Wireless rechargeable automatic spray diffuser. Fill the refillable pod with water and your favourite fragrance, press the button — it handles the rest.",
+    "Wireless rechargeable automatic spray diffuser. Fill the refillable fragrance cartridge with your favourite scent, press the button — it handles the rest.",
   brand: {
     "@type": "Brand",
     name: "Velour Cloud",
@@ -152,7 +152,7 @@ const jsonLd = {
 
 export default function ProductPage() {
   return (
-    <div className="bg-cream min-h-screen">
+    <div className="bg-cream min-h-screen pb-24 lg:pb-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -269,9 +269,9 @@ export default function ProductPage() {
             {[
               {
                 number: "01",
-                title: "Fill the Pod",
+                title: "Fill the Cartridge",
                 description:
-                  "Fill the pod with water and your favourite fragrance.",
+                  "Fill the cartridge with water and your favourite fragrance.",
               },
               {
                 number: "02",
@@ -350,7 +350,7 @@ export default function ProductPage() {
               "1× Velour Cloud™ Aroma Diffuser",
               "1× USB charging cable",
               "1× Wall-mount hardware",
-              "1× Refillable fragrance pod",
+              "1× Rose fragrance cartridge",
               "1× User guide",
             ].map((item, i) => (
               <div
@@ -381,7 +381,7 @@ export default function ProductPage() {
               Diffuser was designed for exactly that feeling — automatically.
             </p>
             <p>
-              Fill the refillable water + fragrance pod with your scent of
+              Fill the refillable fragrance cartridge with your scent of
               choice and press the button to choose one of 4 spray intervals.
               Every 15, 23, 30, or 45 minutes, it sprays a 5-second burst —
               then waits. No timers, no reminders, no manual spraying.

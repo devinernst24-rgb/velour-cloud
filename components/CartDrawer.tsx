@@ -3,14 +3,14 @@
 import { useCart } from "@/context/CartContext";
 
 export default function CartDrawer() {
-  const { items, subtotal, isOpen, isLoading, closeCart, removeItem, checkout } =
+  const { items, subtotal, isOpen, isLoading, closeCart, removeItem, updateQuantity, checkout } =
     useCart();
 
   return (
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-plum/40 backdrop-blur-sm"
+          className="fixed inset-0 z-40 bg-plum/40 backdrop-blur-sm"
           onClick={closeCart}
         />
       )}
@@ -87,9 +87,25 @@ export default function CartDrawer() {
                     <p className="text-sm font-medium text-plum truncate">
                       {item.name}
                     </p>
-                    <p className="text-xs text-plum/60 mt-0.5">
-                      Qty: {item.quantity}
-                    </p>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <button
+                        onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                        disabled={item.quantity <= 1}
+                        className="w-6 h-6 rounded-full border border-plum/30 text-plum text-sm font-semibold flex items-center justify-center hover:bg-plum hover:text-cream transition-colors disabled:opacity-30"
+                        aria-label="Decrease quantity"
+                      >
+                        −
+                      </button>
+                      <span className="text-xs text-plum/70 w-4 text-center">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, Math.min(10, item.quantity + 1))}
+                        disabled={item.quantity >= 10}
+                        className="w-6 h-6 rounded-full border border-plum/30 text-plum text-sm font-semibold flex items-center justify-center hover:bg-plum hover:text-cream transition-colors disabled:opacity-30"
+                        aria-label="Increase quantity"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
                     <p className="text-sm font-medium text-plum">

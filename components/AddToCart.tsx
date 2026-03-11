@@ -71,7 +71,7 @@ export default function AddToCart() {
               Sale
             </span>
           </div>
-          <p className="text-xs text-slate-mist">Includes 1 refillable fragrance pod</p>
+          <p className="text-xs text-slate-mist">Includes 1 Rose fragrance cartridge</p>
         </div>
 
         {/* Replacement cartridges upsell */}
