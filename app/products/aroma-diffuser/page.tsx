@@ -196,7 +196,7 @@ export default function ProductPage() {
             <div className="mt-5 flex flex-wrap gap-3">
               {[
                 { icon: "🔒", label: "Secure Checkout" },
-                { icon: "🚚", label: "Free shipping in Canada" },
+                { icon: "🚚", label: "Free worldwide shipping" },
                 { icon: "↩", label: "30-day returns" },
                 { icon: "🌿", label: "Aromatherapy-grade" },
               ].map((badge) => (

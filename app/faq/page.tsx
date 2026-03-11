@@ -54,9 +54,9 @@ const faqs = [
       "We offer a 30-day satisfaction guarantee. If your diffuser arrives damaged or stops working within 30 days of delivery, email us at hello@velourcloud.com and we will send a replacement at no cost. We stand behind our product.",
   },
   {
-    question: "How long does shipping take to Canada?",
+    question: "How long does shipping take?",
     answer:
-      "Orders ship from our warehouse and typically arrive within 7-14 business days to Canada. Express shipping (3-7 business days) is available at checkout for $9.99 CAD. You will receive a tracking number by email once your order ships.",
+      "Orders ship from our warehouse and typically arrive within 7-14 business days. Express shipping (3-7 business days) is available at checkout. You will receive a tracking number by email once your order ships.",
   },
 ];
 

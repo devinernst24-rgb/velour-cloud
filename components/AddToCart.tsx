@@ -113,7 +113,7 @@ export default function AddToCart() {
           </button>
 
           <p className="text-xs text-slate-mist mt-3 text-center">
-            Free shipping worldwide · Estimated delivery 7–14 business days
+            Free shipping · Estimated delivery 7–14 business days
           </p>
 
           <p className="text-xs text-lilac mt-1.5 text-center font-medium">
