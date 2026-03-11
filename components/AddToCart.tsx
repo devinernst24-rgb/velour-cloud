@@ -71,7 +71,7 @@ export default function AddToCart() {
               Sale
             </span>
           </div>
-          <p className="text-xs text-slate-mist">Includes Rose Refill Cartridge</p>
+          <p className="text-xs text-slate-mist">Includes 1 refillable fragrance pod</p>
         </div>
 
         {/* Replacement cartridges upsell */}
@@ -134,7 +134,7 @@ export default function AddToCart() {
               Velour Cloud™ Aroma Diffuser
             </p>
             <p className="text-cream/60 text-xs">
-              ${DEVICE_PRICE.toFixed(2)} USD
+              ${total.toFixed(2)} USD
             </p>
           </div>
           <button

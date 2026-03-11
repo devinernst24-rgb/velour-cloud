@@ -61,7 +61,7 @@ const steps = [
     number: "03",
     title: "Enjoy the Atmosphere",
     description:
-      "Your space fills with fragrance on a perfect schedule. Just leave it plugged in and let it run.",
+      "Your space fills with fragrance on a perfect schedule. Charge it once and let it run.",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function HomePage() {
               Your Room. Reimagined.
             </h1>
             <p className="text-base md:text-lg text-plum/70 leading-relaxed max-w-xl mb-10">
-              A USB-powered automatic fragrance diffuser that fills your room
+              A rechargeable automatic fragrance diffuser that fills your room
               on your schedule. Refillable, wall-mountable, effortless.
             </p>
             <Link

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 import FAQAccordion from "@/components/FAQAccordion";
+import ProductGallery from "@/components/ProductGallery";
 
 export const metadata: Metadata = {
   title: "Velour Cloud™ Aroma Diffuser — $23.99 USD | Velour Cloud",
@@ -160,29 +160,7 @@ export default function ProductPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         {/* Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="lg:sticky lg:top-24 space-y-4">
-            <div className="rounded-2xl overflow-hidden aspect-square relative">
-              <Image
-                src="/images/product-hero.png"
-                alt="Velour Cloud Aroma Diffuser"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="grid grid-cols-4 gap-3">
-              {[
-                { src: "/images/product-white.png", alt: "White variant" },
-                { src: "/images/product-pink.png", alt: "Pink variant" },
-                { src: "/images/product-blue.png", alt: "Blue variant" },
-                { src: "/images/product-variants.jpg", alt: "Fragrance refill pod variety" },
-              ].map(({ src, alt }, i) => (
-                <div key={i} className="rounded-xl overflow-hidden aspect-square relative">
-                  <Image src={src} alt={alt} fill className="object-cover" />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProductGallery />
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-mist mb-4">
@@ -372,7 +350,7 @@ export default function ProductPage() {
               "1× Velour Cloud™ Aroma Diffuser",
               "1× USB charging cable",
               "1× Wall-mount hardware",
-              "1× Scent cartridge (based on your selection)",
+              "1× Refillable fragrance pod",
               "1× User guide",
             ].map((item, i) => (
               <div
